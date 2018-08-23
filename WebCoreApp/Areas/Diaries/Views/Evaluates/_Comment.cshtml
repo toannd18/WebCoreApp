@@ -1,0 +1,70 @@
+﻿@model WebCoreApp.Areas.Diaries.Models.ViewCommentModel
+@{
+    var selectList = new SelectList(
+        new List<SelectListItem>
+        {
+    new SelectListItem {Text = "Mức 1", Value = "1"},
+    new SelectListItem {Text = "Mưc 2", Value = "2"},
+    new SelectListItem {Text = "Mức 3", Value = "3",Selected=true},
+    new SelectListItem {Text = "Mức 4", Value = "4"},
+    new SelectListItem {Text = "Mức 5", Value = "5"},
+
+        }, "Value", "Text");
+
+}
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<form id="frmcomment" class="form-horizontal">
+    <input type="hidden" asp-for="id" />
+    <div class="form-group">
+        <label class="control-label col-md-2">Nội dung</label>
+        <div class="col-md-10">
+            <textarea asp-for="contentJob" class="form-control" readonly rows="3"></textarea>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Loại Công Việc</label>
+        <div class="col-md-10">
+            <select asp-for="jobId" asp-items="@(ViewBag.JobList as SelectList)" class="form-control" readonly></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Phương Pháp Thực Hiện</label>
+        <div class="col-md-10">
+            <TextArea asp-for="method" class="form-control" readonly rows="4"></TextArea>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Kết quả</label>
+        <div class="col-md-10">
+            <TextArea asp-for="result" class="form-control" readonly></TextArea>
+        </div>
+    </div>
+    @*Noi dung dannh gia*@
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Mức</label>
+        <div class="col-md-10">
+            <select asp-for="level" asp-items="@selectList" class="form-control"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Đánh giá</label>
+        <div class="col-md-10">
+            <textarea asp-for="comment" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+
+        <div class="col-md-offset-2 col-md-4">
+            <input type="button" class="btn btn-primary" onclick="savecomment(0)" value="Lưu" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,52 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Đánh giá nhật ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js/Diary/leadload.js"></script>
+}
+<br />
+<div class="form-group">
+    <button class="btn btn-info" onclick="getPage()" data-toggle="tooltip" data-placement="bottom" title="Chi tiết"><span class="fa fa-info-circle"></span></button>
+    @if (ViewBag.Display > 3)
+    {
+        <label class="control-label col-md-1">Phòng</label>
+
+        <div class="col-md-2">
+            @if (ViewBag.Display < 6)
+            {
+                <select id="maBp" name="maBp" class="form-control" asp-items="@(ViewBag.Bp as SelectList)"></select>
+
+            }
+            else
+            {
+                <select id="maBp" name="maBp" class="form-control" asp-items="@(ViewBag.Bp as SelectList)">
+                    <option value="">--- Tất cả ---</option>
+                </select>
+
+            }
+        </div>
+        <label class="control-label col-md-1">Tổ</label>
+        <div class="col-md-2">
+            <select id="maTo" class="form-control" asp-items="@(ViewBag.To as SelectList)">
+                <option value="">--- Tất cả ---</option>
+            </select>
+
+        </div>
+
+    }
+
+</div>
+<table class="table-striped table-bordered" id="tblDỉary">
+    <thead>
+        <tr>
+            <th>Thời gian</th>
+            <th>Họ và tên</th>
+            <th>Tổng kết các công việc chính</th>
+            <th>Người đánh giá</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+

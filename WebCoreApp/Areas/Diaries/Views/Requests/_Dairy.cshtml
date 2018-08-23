@@ -1,0 +1,18 @@
+﻿@model WebCoreApp.Data.TblDaily
+<form id="frmDiary" class="form-horizontal">
+
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        <label class="control-label col-md-2">Thời Gian</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Date, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker",placeholder="dd/mm/yyyy"})
+            @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-4">
+            <input type="button" class="btn btn-info btn-sm" onclick="save()" value="Tạo" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </div>
+    </div>
+</form>

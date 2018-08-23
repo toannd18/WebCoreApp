@@ -1,0 +1,31 @@
+﻿@model List<ViewNotificationModel>
+
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+        <i class="fa fa-bell"></i>
+        <span class="badge">@ViewBag.Count</span>
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <div style="width:80%;float:left;margin-left:5%">
+                <h5>Thông báo</h5>
+            </div>
+        </li>
+        <li>
+
+            @foreach (var item in Model)
+            {
+                <a href="@item.Url">
+                    <div style="width:80%;">
+                        <h6>@item.Notification</h6>
+
+                    </div>
+                    <i class="fa fa-clock-o"></i><san>@item.Date</san>
+                </a>
+            }
+
+        </li>
+
+        <li class="footer">
+            <a href="#" class=" waves-effect waves-block">Tất cả thông báo</a>
+        </li>
+    </ul>

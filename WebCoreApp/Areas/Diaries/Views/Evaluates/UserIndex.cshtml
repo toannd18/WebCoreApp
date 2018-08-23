@@ -1,0 +1,67 @@
+﻿@model WebCoreApp.Areas.Diaries.Models.ViewDiaryModel
+@{
+    ViewData["Title"] = "UserIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js/Diary/evaluate.js"></script>
+}
+<div class="bs-example4" data-example-id="simple-responsive-table">
+    <input type="hidden" id="daily_id" value="@Model.Id" />
+
+    <div class="table-responsive">
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th style="text-align:center;font-size:20px">Nhật Ký Công Việc</th>
+                </tr>
+                <tr>
+                    <td style="text-align:center">Ngày @Model.Date.ToString("dd/MM/yyyy")</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Họ và tên: @Model.FullName</td>
+                </tr>
+                <tr>
+                    <td>Chức danh: @Model.TenCV</td>
+                </tr>
+                <tr>
+                    <td>Tổ/Nhóm: @Model.TenTo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- /.table-responsive -->
+    <br />
+    <div class="form-group">
+        <button class="btn btn-primary" onclick="detail(0)" data-toggle="tooltip" data-placement="bottom" title="Thêm"><span class="fa fa-plus-square-o"></span></button>
+        <button class="btn btn-warng1" onclick="getdata()" data-toggle="tooltip" data-placement="bottom" title="Sửa"><span class="fa fa-pencil-square-o"></span></button>
+        <button class="btn btn-danger" onclick="confirmDelete()" data-toggle="tooltip" data-placement="bottom" title="Xóa"><span class="fa fa-trash-o"></span></button>
+        <button class="btn btn-info" onclick="sendnotification()" data-toggle="tooltip" data-placement="bottom" title="Gửi"><span class="fa fa-envelope-o"></span></button>
+    </div>
+</div>
+
+<div class="bs-example4" data-example-id="simple-responsive-table">
+    <div class="table-responsive">
+        <table class="table-bordered table-condensed" id="dailytbl" style="font-family:'Times New Roman', Times, serif;font-size:11px">
+            <thead>
+                <tr>
+                    <th colspan="2" ;width:10%">Thời gian</th>
+                    <th style="text-align:center" rowspan="2">Nội dung công việc</th>
+                    <th style="text-align:center" rowspan="2">Phương pháp, công nghệ thực hiện công việc</th>
+                    <th style="text-align:center" rowspan="2">Kết quả thực hiện công việc</th>
+                    <th style="text-align:center" rowspan="2">Tổng Kết Các Công Việc Chính</th>
+                    <th style="text-align:center" rowspan="2">Đánh giá của Tổ trưởng</th>
+                    <th style="text-align:center" rowspan="2">Đánh giá của Phó phòng trực tiếp</th>
+                    <th style="text-align:center" rowspan="2">Đánh giá của Trưởng Phòng</th>
+                </tr>
+                <tr>
+                    <th>Từ</th>
+                    <th>Đến</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div><!-- /.table-responsive -->
+</div>
+@await Html.PartialAsync("~/Views/Shared/_Modal.cshtml")

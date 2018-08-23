@@ -1,0 +1,46 @@
+﻿
+<div id="modal-comment-all" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Đánh giá chung</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmcommentAll" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Mức</label>
+                        <div class="col-md-10">
+                            <select id="levelAll" class="form-control">
+                                <option value="1">Mức 1</option>
+                                <option value="2">Mức 2</option>
+                                <option value="3">Mức 3</option>
+                                <option value="4">Mức 4</option>
+                                <option value="5">Mức 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Đánh giá</label>
+                        <div class="col-md-10">
+                            <textarea  rows="3" id="commentAll" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-md-offset-2 col-md-4">
+                            <input type="button" class="btn btn-primary" onclick="savecomment(1)" value="Lưu" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>*@
+        </div>
+
+    </div>
+</div>
