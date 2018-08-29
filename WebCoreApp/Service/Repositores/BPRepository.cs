@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;

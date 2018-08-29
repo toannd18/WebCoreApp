@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebCoreApp.Areas.Diaries.Models;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Service.Interfaces;
 
 namespace WebCoreApp.Service.Repositores

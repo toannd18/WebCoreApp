@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebCoreApp.Areas.Diaries.Models;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 
 namespace WebCoreApp.Service.Interfaces
 {

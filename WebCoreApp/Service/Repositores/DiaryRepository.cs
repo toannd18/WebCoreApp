@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WebCoreApp.Areas.Diaries.Models;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Extensions.Signlar;
 using WebCoreApp.Service.Interfaces;
 

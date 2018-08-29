@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebCoreApp.Areas.Diaries.Models;
 using WebCoreApp.Constants;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Service.Interfaces;
 
 namespace WebCoreApp.Areas.Diaries.Controllers

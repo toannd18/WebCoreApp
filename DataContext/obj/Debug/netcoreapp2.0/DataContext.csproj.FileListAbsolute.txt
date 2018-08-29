@@ -1,0 +1,9 @@
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\bin\Debug\netcoreapp2.0\DataContext.deps.json
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\bin\Debug\netcoreapp2.0\DataContext.dll
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\bin\Debug\netcoreapp2.0\DataContext.pdb
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\obj\Debug\netcoreapp2.0\DataContext.csprojAssemblyReference.cache
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\obj\Debug\netcoreapp2.0\DataContext.csproj.CoreCompileInputs.cache
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\obj\Debug\netcoreapp2.0\DataContext.AssemblyInfoInputs.cache
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\obj\Debug\netcoreapp2.0\DataContext.AssemblyInfo.cs
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\obj\Debug\netcoreapp2.0\DataContext.dll
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext\obj\Debug\netcoreapp2.0\DataContext.pdb

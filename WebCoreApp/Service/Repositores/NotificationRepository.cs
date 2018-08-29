@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Models;
 using WebCoreApp.Service.Interfaces;
 

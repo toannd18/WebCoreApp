@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Enume;
 using WebCoreApp.Service.Interfaces;
 

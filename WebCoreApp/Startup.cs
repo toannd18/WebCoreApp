@@ -14,7 +14,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Globalization;
 using System.Text;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Extensions.Signlar;
 using WebCoreApp.Service.Interfaces;
 using WebCoreApp.Service.Repositores;

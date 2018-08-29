@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebCoreApp.Areas.Reports.Models;
-using WebCoreApp.Data;
+using DataContext.WebCoreApp;
 using WebCoreApp.Service.Interfaces;
 
 namespace WebCoreApp.Service.Repositores
