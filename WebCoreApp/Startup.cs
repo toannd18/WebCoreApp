@@ -96,6 +96,8 @@ namespace WebCoreApp
             services.AddTransient<IBPRepository, BPRepository>();
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
+
+            services.AddTransient<IReportDiaryRepository, ReportDiaryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

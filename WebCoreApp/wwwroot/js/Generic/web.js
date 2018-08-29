@@ -52,6 +52,13 @@
         $(id).removeData('unobtrusiveValidation');
         $.validator.unobtrusive.parse($(id));
         
+    },
+
+    isLoading: function (){
+       return bootbox.dialog({
+            message: '<div class="loader text-center"></div>',
+            closeButton: false,
+        })
     }
 };
 $(document).ajaxSend(function (e, xhr, options) {
