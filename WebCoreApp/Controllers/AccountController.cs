@@ -25,7 +25,7 @@ namespace WebCoreApp.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
-            return View();
+            return View("LoginAdmin");
         }
 
         [HttpPost]
@@ -68,10 +68,10 @@ namespace WebCoreApp.Controllers
                     }
                     return RedirectToAction("Index", "Home");
                 }
-                else ModelState.AddModelError("", "Mật Khẩu hoặc Tài Khoản Không Chính Xác");
+                else ModelState.AddModelError("", "Mật khẩu hoặc Tài khoản không chính xác");
             }
 
-            return View(model);
+            return View("LoginAdmin",model);
         }
 
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]

@@ -23,7 +23,6 @@ E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Areas\System\Views\Users\Index.g.cshtml.cs
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Areas\System\Views\_ViewImports.g.cshtml.cs
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
-E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\View.g.cshtml.cs
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
@@ -50,3 +49,8 @@ E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\bin\Debug\netcoreapp2.1\DataC
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\bin\Debug\netcoreapp2.1\DataContext.pdb
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\WebCoreApp.Views.pdb
 E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\WebCoreApp.csproj.CopyComplete
+E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\LoginAdmin.g.cshtml.cs
+E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutAdmin.g.cshtml.cs
+E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Areas\Diaries\Views\_ViewStart.g.cshtml.cs
+E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Areas\Reports\Views\_ViewStart.g.cshtml.cs
+E:\2.Programming\PTSCCoreApp\WebCoreApp\WebCoreApp\obj\Debug\netcoreapp2.1\Razor\Areas\System\Views\_ViewStart.g.cshtml.cs

@@ -47,6 +47,8 @@ namespace WebCoreApp.Service.Repositores
                     UserName = u.UserName,
                     FullName = u.FullName,
                     Ten_phong = p.TenBp,
+                    MaBP=p.MaBp,
+                    MaTo=subt.MaTo,
                     Ten_to = subt.TenTo,
                     Total_Work = subdd.Total_Work > 0 ? subdd.Total_Work : 0,
                     Total_Date = subd.Id > 0 ? subd.Id : 0

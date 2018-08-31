@@ -1,18 +1,31 @@
 ﻿@model AppUser
 
-    <li class="dropdown pull-right">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            @Model.Email
-            <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li>
-                <form asp-controller="Account" asp-area="" asp-action="Logout" method="post" id="logout">
-                   
-                </form>
-                <a href="javascript:document.getElementById('logout').submit()">
-                    <span class="glyphicon glyphicon-log-out"></span> LogOut
-                </a>
-            </li>
-        </ul>
-    </li>
+<li class="">
+    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <img src="images/img.jpg" alt="">@Model.Email
+        <i class=" fa fa-angle-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-usermenu pull-right">
+        <li><a href="javascript:;"> Profile</a></li>
+        <li>
+            <form asp-controller="Account" asp-area="" asp-action="Logout" method="post" id="logout"></form>
+            <a href="javascript:document.getElementById('logout').submit()">
+                <span class="glyphicon glyphicon-log-out"></span> LogOut
+            </a>
+        </li>
+    </ul>
+</li>
+@*<li class="dropdown pull-right">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        @Model.Email
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <form asp-controller="Account" asp-area="" asp-action="Logout" method="post" id="logout"></form>
+            <a href="javascript:document.getElementById('logout').submit()">
+                <span class="glyphicon glyphicon-log-out"></span> LogOut
+            </a>
+        </li>
+    </ul>
+</li>*@

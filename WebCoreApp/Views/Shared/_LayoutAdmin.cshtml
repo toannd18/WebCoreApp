@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gentelella Alela! | </title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+    <!-- Site -->
+
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Font Awesome -->
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" asp-append-version="true">
+    <!-- iCheck -->
+    <link href="~/lib/iCheck/skins/flat/green.css" rel="stylesheet" asp-append-version="true">
+    <!-- DataTables -->
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Jquery UI -->
+    <link href="~/lib/jqueryui/jquery-ui.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/jqueryui/jquery-ui.theme.min.css" rel="stylesheet" asp-append-version="true" />
+    @*<!-- NProgress -->
+        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- bootstrap-progressbar -->
+        <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+        <!-- bootstrap-daterangepicker -->
+        <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">*@
+    <!-- Custom Theme Style -->
+ 
+    <link href="~/css/custom.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="index.html">Dashboard</a></li>
+                                        <li><a href="index2.html">Dashboard2</a></li>
+                                        <li><a href="index3.html">Dashboard3</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    @await Component.InvokeAsync("Login")
+                                    <li role="presentation" class="dropdown" id="_notificationPush">
+                                        @await Component.InvokeAsync("Notification")
+                                    </li>
+                                </ul>
+
+                            }
+
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+
+                <!-- page content -->
+                <div class="right_col" role="main">
+                   
+                        @RenderBody()
+               
+                    
+                </div>
+                <!-- page content -->
+            
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    @await Html.PartialAsync("_Modal")
+
+    <!-- jQuery -->
+    <script src="~/lib/jquery/jquery/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/jquery.serializeJSON/jquery.serializejson.min.js" asp-append-version="true"></script>
+    <!-- Bootstrap -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <!-- FastClick -->
+    <script src="~/lib/fastclick/fastclick.min.js" asp-append-version="true"></script>
+    <!-- Chart.js -->
+    <script src="~/lib/Chart.js/Chart.min.js" asp-append-version="true"></script>
+    <!-- iCheck -->
+    <script src="~/lib/iCheck/icheck.min.js" asp-append-version="true"></script>
+    <!-- Skycons -->
+    <script src="~/lib/skycons/skycons.min.js" asp-append-version="true"></script>
+    <!-- Notifications -->
+    <script src="~/lib/notify/notify.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootbox.js/bootbox.min.js" asp-append-version="true"></script>
+    <!-- DataTables -->
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/dataTables.select.min.js" asp-append-version="true"></script>
+
+    @*<!-- NProgress -->
+        <script src="../vendors/nprogress/nprogress.js"></script>
+        <!-- gauge.js -->
+        <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+        <!-- bootstrap-progressbar -->
+        <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <!-- Flot -->
+        <script src="../vendors/Flot/jquery.flot.js"></script>
+        <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+        <script src="../vendors/Flot/jquery.flot.time.js"></script>
+        <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+        <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+        <!-- Flot plugins -->
+        <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+        <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+        <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+        <!-- DateJS -->
+        <script src="../vendors/DateJS/build/date.js"></script>
+        <!-- JQVMap -->
+        <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+        <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>*@
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/lib/moment.js/moment.min.js" asp-append-version="true"></script>
+    @*<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+    <!-- Signalr -->
+    <script src="~/lib/signalr/signalr.js" asp-append-version="true"></script>
+    <script src="~/js/SignalrHub/notifications.js" asp-append-version="true"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/lib/asset/custom.min.js"></script>
+    <script src="~/js/Generic/web.js"></script>
+    <!-- Validation -->
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
