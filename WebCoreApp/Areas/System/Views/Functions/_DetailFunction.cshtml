@@ -1,0 +1,76 @@
+﻿@model Functions;
+@{
+    Layout = null;
+}
+
+<form class="form-horizontal" id="frmFunction">
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            @if (Model == null)
+            {
+                <input asp-for='Id' class='form-control' /> 
+            }
+            else
+            {
+                <input asp-for='Id' class='form-control' readonly />
+            }
+               
+
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Đường dẫn</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <input asp-for="Url" class="form-control" />
+            <span asp-validation-for="Url" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã cha</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <select asp-for="ParentId" asp-items="@ViewBag.ListParent" class="form-control">
+                <option value="">--- Chọn ---</option>
+            </select>
+            <span asp-validation-for="ParentId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Vị trí</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <input asp-for="DisplayOrder" class="form-control" />
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tình trạng</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <select asp-for="Status" class="form-control">
+                <option value="True">Kích hoạt</option>
+                <option value="False">Khóa</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Icon</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <input asp-for="IconCss" class="form-control" />
+        </div>
+    </div>
+    <div class="ln_solid"></div>
+    <div class="form-group">
+        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+            <button class="btn btn-success" type="button" onclick="@(Model == null ? "saveData(false)" : "saveData(true)")">Lưu</button>
+            <button class="btn btn-primary" type="button" data-dismiss="modal">Đóng</button>
+        </div>
+    </div>
+
+</form>

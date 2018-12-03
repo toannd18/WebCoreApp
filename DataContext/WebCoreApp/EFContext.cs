@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using DataContext.WebCoreApp.Pipe;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
+using System;
 
 namespace DataContext.WebCoreApp
 {
-    public partial class EFContext : DbContext
+    public partial class EFContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public EFContext()
         {
@@ -15,14 +15,15 @@ namespace DataContext.WebCoreApp
         public EFContext(DbContextOptions<EFContext> options)
             : base(options)
         {
+            Database.SetCommandTimeout(900);
         }
 
         public virtual DbSet<AppRole> AppRole { get; set; }
         public virtual DbSet<AppUser> AppUser { get; set; }
-        public virtual DbSet<AppUserRoles> AppUserRoles { get; set; }
+
         public virtual DbSet<Functions> Functions { get; set; }
         public virtual DbSet<LogIn> LogIn { get; set; }
-        public virtual DbSet<MigrationHistory> MigrationHistory { get; set; }
+
         public virtual DbSet<Permissions> Permissions { get; set; }
         public virtual DbSet<TblBp> TblBp { get; set; }
         public virtual DbSet<TblCv> TblCv { get; set; }
@@ -43,6 +44,21 @@ namespace DataContext.WebCoreApp
         public virtual DbSet<TblProvider> TblProvider { get; set; }
         public virtual DbSet<TblTo> TblTo { get; set; }
 
+        //PipeClass
+
+        #region PipeClass
+
+        public virtual DbSet<IsoJoint> IsoJoints { get; set; }
+        public virtual DbSet<Isometric> Isometrics { get; set; }
+
+        public virtual DbSet<MaterialPipe> MaterialPipes { get; set; }
+        public virtual DbSet<TypeJoint> TypeJoints { get; set; }
+
+        public virtual DbSet<Welder> Welders { get; set; }
+        public virtual DbSet<WelderCertification> WelderCertifications { get; set; }
+
+        #endregion PipeClass
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    if (!optionsBuilder.IsConfigured)
@@ -58,14 +74,22 @@ namespace DataContext.WebCoreApp
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Identity config
+
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims").HasKey(x => x.Id);
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims")
+               .HasKey(x => x.Id);
+
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens")
+               .HasKey(x => new { x.UserId });
+
+            #endregion Identity config
+
             modelBuilder.Entity<AppRole>(entity =>
             {
                 entity.Property(e => e.Description).HasMaxLength(50);
-
-                entity.Property(e => e.Role)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<AppUser>(entity =>
@@ -104,8 +128,7 @@ namespace DataContext.WebCoreApp
                     .IsUnicode(false);
 
                 entity.Property(e => e.PasswordHash)
-                    .IsRequired()
-                    .HasMaxLength(50)
+
                     .IsUnicode(false);
 
                 entity.Property(e => e.Status)
@@ -116,36 +139,27 @@ namespace DataContext.WebCoreApp
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.MaBpNavigation)
-                    .WithMany(p => p.AppUser)
-                    .HasForeignKey(d => d.MaBp)
-                    .HasConstraintName("FK_AppUser_tbl_BP");
-
-                entity.HasOne(d => d.MaCvNavigation)
-                    .WithMany(p => p.AppUser)
-                    .HasForeignKey(d => d.MaCv)
-                    .HasConstraintName("FK_AppUser_tbl_CV");
-
-                entity.HasOne(d => d.MaToNavigation)
-                    .WithMany(p => p.AppUser)
-                    .HasForeignKey(d => d.MaTo)
-                    .HasConstraintName("FK_AppUser_tbl_TO");
+                entity.HasOne(e => e.TblBp)
+                .WithMany(e => e.AppUser)
+                .HasForeignKey(e => e.MaBp)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AppUser_TblBp");
+                entity.HasOne(e => e.TblCv)
+                .WithMany(e => e.AppUser)
+                .HasForeignKey(e => e.MaCv)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AppUser_TblCv");
+                entity.HasOne(e => e.TblTo)
+                .WithMany(e => e.AppUser)
+                .HasForeignKey(e => e.MaTo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AppUser_TblTo");
             });
 
-            modelBuilder.Entity<AppUserRoles>(entity =>
+            modelBuilder.Entity<IdentityUserRole<Guid>>(entity =>
             {
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AppUserRoles)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AppUserRoles_AppRole");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AppUserRoles)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AppUserRoles_AppUser");
+                entity.HasKey(e => new { e.RoleId, e.UserId });
+                entity.ToTable("AppUserRoles");
             });
 
             modelBuilder.Entity<Functions>(entity =>
@@ -179,7 +193,8 @@ namespace DataContext.WebCoreApp
                 entity.HasOne(d => d.Parent)
                     .WithMany(p => p.InverseParent)
                     .HasForeignKey(d => d.ParentId)
-                    .HasConstraintName("FK_Functions_Functions");
+                    .HasConstraintName("FK_Functions_Functions")
+                    ;
             });
 
             modelBuilder.Entity<LogIn>(entity =>
@@ -204,42 +219,19 @@ namespace DataContext.WebCoreApp
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<MigrationHistory>(entity =>
-            {
-                entity.HasKey(e => new { e.MigrationId, e.ContextKey });
-
-                entity.ToTable("__MigrationHistory");
-
-                entity.Property(e => e.MigrationId).HasMaxLength(150);
-
-                entity.Property(e => e.ContextKey).HasMaxLength(300);
-
-                entity.Property(e => e.Model).IsRequired();
-
-                entity.Property(e => e.ProductVersion)
-                    .IsRequired()
-                    .HasMaxLength(32);
-            });
-
             modelBuilder.Entity<Permissions>(entity =>
-            {
-                entity.Property(e => e.FunctionId)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+   {
+       entity.Property(e => e.FunctionId)
+           .IsRequired()
+           .HasMaxLength(50)
+           .IsUnicode(false);
 
-                entity.HasOne(d => d.Function)
-                    .WithMany(p => p.Permissions)
-                    .HasForeignKey(d => d.FunctionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Permissions_Functions");
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.Permissions)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Permissions_AppRole");
-            });
+       entity.HasOne(d => d.Function)
+           .WithMany(p => p.Permissions)
+           .HasForeignKey(d => d.FunctionId)
+           .OnDelete(DeleteBehavior.ClientSetNull)
+           .HasConstraintName("FK_Permissions_Functions");
+   });
 
             modelBuilder.Entity<TblBp>(entity =>
             {
@@ -919,6 +911,68 @@ namespace DataContext.WebCoreApp
                     .HasForeignKey(d => d.MaBp)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tbl_TO_tbl_BP");
+            });
+
+            modelBuilder.Entity<IsoJoint>(entity =>
+            {
+                entity.Property(e => e.Status)
+                        .HasColumnType("tinyint");
+
+                entity.Property(e => e.SF)
+                        .HasColumnType("tinyint");
+
+                entity.Property(e => e.WeldingDate)
+                       .HasColumnType("Date");
+
+                entity.HasOne(d => d.Isometric)
+                       .WithMany(e => e.IsoJoints)
+                        .HasForeignKey(e => e.DrawName);
+                entity.Property(e => e.Size).HasColumnType("decimal(5,2)");
+            });
+
+            modelBuilder.Entity<Isometric>(entity =>
+            {
+                entity.Property(e => e.DrawName).IsUnicode(false);
+                entity.Property(e => e.Line).IsUnicode(false);
+                entity.Property(e => e.PipeClass).IsUnicode(false);
+                entity.Property(e => e.Unit).IsUnicode(false);
+                entity.Property(e => e.Size).HasColumnType("decimal(5,2)");
+            });
+
+            modelBuilder.Entity<MaterialPipe>(entity =>
+            {
+                entity.Property(e => e.Name)
+                .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TypeJoint>(entity =>
+            {
+                entity.Property(e => e.Type)
+                .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Welder>(entity =>
+            {
+                entity.Property(e => e.Id)
+                .IsUnicode(false);
+                entity.Property(e => e.BrithDay)
+               .HasColumnType("Date");
+            });
+
+            modelBuilder.Entity<WelderCertification>(entity =>
+            {
+                entity.Property(e => e.Certification)
+                      .IsUnicode(false);
+                entity.Property(e => e.Description)
+                    .IsUnicode(true);
+                entity.Property(e => e.CerDate)
+                    .HasColumnType("Date");
+                entity.Property(e => e.Remark)
+                  .IsUnicode(true);
+                entity.HasOne(d => d.Welder)
+                .WithMany(e => e.WelderCertifications)
+                .HasForeignKey(e => e.IdWelder)
+                .OnDelete(DeleteBehavior.ClientSetNull);
             });
         }
     }

@@ -12,14 +12,14 @@
                 var labels = [];
                 var datasets = [];
                 data.map(function (item, index) {
-                    var rate = (item.Total_Work / (item.Total_Date * 4.8)).toFixed(2);
+                    var rate = (item.Total_Time / (item.Total_Date * 4.8)).toFixed(2);
                     render += '<tr>' +
-                                '<td> ' + item.Ten_Phong + '</td>' +
+                                '<td> ' + item.Ten_BP + '</td>' +
                                 '<td> ' + item.Total_Date + '</td>' +
-                                '<td> ' + item.Total_Work + '</td>' +
+                                '<td> ' + item.Total_Time + '</td>' +
                                 '<td> ' + rate + '% </td>' +
                                 '</tr>';
-                    labels.push(item.Ten_Phong);
+                    labels.push(item.Ten_BP);
                    datasets.push(rate);
                 });
                 $('#bdTbl').html(render);
@@ -52,11 +52,11 @@ function getdatato() {
                 var labels = [];
                 var datasets = [];
                 data.map(function (item, index) {
-                    var rate = (item.Total_Work / (item.Total_Date * 4.8)).toFixed(2);
+                    var rate = (item.Total_Time / (item.Total_Date * 4.8)).toFixed(2);
                     render += '<tr>' +
                                 '<td> ' + item.Ten_To + '</td>' +
                                 '<td> ' + item.Total_Date + '</td>' +
-                                '<td> ' + item.Total_Work + '</td>' +
+                                '<td> ' + item.Total_Time + '</td>' +
                                 '<td> ' + rate + '% </td>' +
                                 '</tr>';
                     labels.push(item.Ten_To);

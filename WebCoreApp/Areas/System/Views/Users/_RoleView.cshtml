@@ -1,0 +1,40 @@
+﻿@model IList<AppRole>;
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Danh sách quyền</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <select asp-items="@ViewBag.ListRole" class="form-control" id="roleName">
+                <option value="">--- Chọn ---</option>
+            </select>
+            
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="alert"  style="display:none;padding:10px"></div>
+        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+            <button data-toggle="tooltip" title="Thêm quyền" class="btn btn-primary" type="button" onclick="addRole()"><i class="fa fa-plus"></i></button>
+            <button data-toggle="tooltip" title="Xóa quyền" class="btn btn-danger" type="button" onclick="deleteRole()"><i class="fa fa-trash"></i></button>
+
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Tên quyền</th>
+            <th>Diễn giải</th>
+        </tr>
+    </thead>
+    <tbody id="roletbl">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+            </tr>
+
+        }
+    </tbody>
+</table>

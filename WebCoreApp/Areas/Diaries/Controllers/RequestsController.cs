@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using DataContext.WebCoreApp;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.OData.Query.SemanticAst;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebCoreApp.Areas.Diaries.Models;
 using WebCoreApp.Constants;
-using DataContext.WebCoreApp;
+using WebCoreApp.Infrastructure.Interfaces;
+using WebCoreApp.Infrastructure.ViewModels.Diary;
 using WebCoreApp.Service.Interfaces;
 
 namespace WebCoreApp.Areas.Diaries.Controllers
@@ -27,12 +27,12 @@ namespace WebCoreApp.Areas.Diaries.Controllers
         {
             _diaryRepository = diaryRepository;
             _bPRepository = bPRepository;
-            _toRepository= toRepository;
+            _toRepository = toRepository;
         }
 
         #region User make report
 
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = "Identity.Aplication")]
         // Get Request
         [HttpGet]
         public IActionResult Index()
@@ -99,7 +99,8 @@ namespace WebCoreApp.Areas.Diaries.Controllers
         #endregion User make report
 
         #region User evaluate
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+
+        [Authorize(AuthenticationSchemes = "Identity.Aplication")]
         [HttpGet]
         public async Task<IActionResult> Evaluate()
         {
@@ -122,23 +123,22 @@ namespace WebCoreApp.Areas.Diaries.Controllers
         [Authorize(AuthenticationSchemes = CommonConstants.AuthSchemes)]
         [Route("[area]/api/[controller]/leadload")]
         [HttpPost]
-        public async Task<IActionResult> LeadLoad(int? draw, int start, string search,string maBp="",string maTo="", int length=10)
+        public async Task<IActionResult> LeadLoad(int? draw, int start, string search, string maBp = "", string maTo = "", int length = 10)
         {
             if (!string.IsNullOrEmpty(Request.Form["search[value]"]))
             {
                 search = Request.Form["search[value]"];
             }
-            
+
             string oderId = Request.Form["order[0][column]"];
             string oderDir = Request.Form["order[0][dir]"];
 
-           
             if (draw == null)
             {
                 start = (start - 1) * length;
             }
 
-            (IEnumerable<ViewDiaryModel> data, int totals, int filter) = await _diaryRepository.GetTable(length, start, search, oderId, oderDir,maBp,maTo);
+            (IEnumerable<ViewDiaryModel> data, int totals, int filter) = await _diaryRepository.GetTable(length, start, search, oderId, oderDir, maBp, maTo);
 
             return Ok(new { draw = draw, recordsTotal = totals, recordsFiltered = filter, data = data });
         }
@@ -148,15 +148,15 @@ namespace WebCoreApp.Areas.Diaries.Controllers
         [HttpGet]
         public async Task<IActionResult> LoadTo(string id)
         {
-            var data =await _toRepository.GetAll();
-            if (id!="null")
+            var data = await _toRepository.GetAll();
+            if (id != "null")
             {
                 data = data.Where(m => m.MaBp == id);
-
             }
-           
+
             return Ok(data);
         }
-        #endregion
+
+        #endregion User evaluate
     }
 }

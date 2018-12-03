@@ -8,7 +8,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreApp", "WebCoreApp\We
 		{6F691F9F-BC7D-4212-8F9E-2C96D0876F15} = {6F691F9F-BC7D-4212-8F9E-2C96D0876F15}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContext", "DataContext\DataContext.csproj", "{6F691F9F-BC7D-4212-8F9E-2C96D0876F15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataContext", "DataContext\DataContext.csproj", "{6F691F9F-BC7D-4212-8F9E-2C96D0876F15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataContext.Drapper", "DataContext.Drapper\DataContext.Drapper.csproj", "{F68DCA41-1C93-44D3-841B-8E1771C31E0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCoreApp.Infrastructure", "Infrastructure\WebCoreApp.Infrastructure.csproj", "{05096432-67A1-4CEF-B234-08FFFF62DF61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,14 @@ Global
 		{6F691F9F-BC7D-4212-8F9E-2C96D0876F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F691F9F-BC7D-4212-8F9E-2C96D0876F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F691F9F-BC7D-4212-8F9E-2C96D0876F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F68DCA41-1C93-44D3-841B-8E1771C31E0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F68DCA41-1C93-44D3-841B-8E1771C31E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F68DCA41-1C93-44D3-841B-8E1771C31E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F68DCA41-1C93-44D3-841B-8E1771C31E0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05096432-67A1-4CEF-B234-08FFFF62DF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05096432-67A1-4CEF-B234-08FFFF62DF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05096432-67A1-4CEF-B234-08FFFF62DF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05096432-67A1-4CEF-B234-08FFFF62DF61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

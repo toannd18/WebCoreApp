@@ -1,26 +1,49 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Tạo nhật ký";
+
 }
 
 @section Scripts{
-    <script src="~/js/Diary/request.js"></script>
+    <script src="~/js/Diary/request.js" asp-append-version="true"></script>
 }
-    <div class="form-group">
-        <button class="btn btn-primary" onclick="detail(0)" data-toggle="tooltip" data-placement="bottom" title="Thêm"><span class="fa fa-plus-square-o"></span></button>
-        <button class="btn btn-warng1" onclick="getdata()" data-toggle="tooltip" data-placement="bottom" title="Sửa"><span class="fa fa-pencil-square-o"></span></button>
-        <button class="btn btn-danger" onclick="confirmData()" data-toggle="tooltip" data-placement="bottom" title="Xóa"><span class="fa fa-trash-o"></span></button>
-        <button class="btn btn-info" onclick="getPage()" data-toggle="tooltip" data-placement="bottom" title="Chi tiết"><span class="fa fa-info-circle"></span></button>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <!-- Tiêu đề -->
+            <div class="x_title">
+                <h2>Tạo nhật ký</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <!-- Nội dung -->
+            <div class="x_content">
+                <div class="form-group">
+                    <button class="btn btn-success" onclick="detail(0)" data-toggle="tooltip" data-placement="bottom" title="Thêm"><i class="fa fa-plus-square-o"></i></button>
+                    <button class="btn btn-primary" onclick="getdata()" data-toggle="tooltip" data-placement="bottom" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="btn btn-danger" onclick="confirmData()" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-info" onclick="getPage()" data-toggle="tooltip" data-placement="bottom" title="Chi tiết"><i class="fa fa-info-circle"></i></button>
+                </div>
+                <table class="table-striped table-bordered" id="tblDỉary" style="width:100%;color:#080808">
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Họ và tên</th>
+                            <th>Tổng kết các công việc chính</th>
+                            <th>Người đánh giá</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
     </div>
-<table class="table-striped table-bordered" id="tblDỉary">
-    <thead>
-        <tr>
-            <th>Thời gian</th>
-            <th>Họ và tên</th>
-            <th>Tổng kết các công việc chính</th>
-            <th>Người đánh giá</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+</div>
+

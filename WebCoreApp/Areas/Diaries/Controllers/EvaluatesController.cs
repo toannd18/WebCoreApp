@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using DataContext.WebCoreApp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebCoreApp.Areas.Diaries.Models;
 using WebCoreApp.Constants;
-using DataContext.WebCoreApp;
-using WebCoreApp.Service.Interfaces;
+using WebCoreApp.Extensions.Signlarr;
+using WebCoreApp.Infrastructure.Interfaces;
+using WebCoreApp.Infrastructure.ViewModels.Diary;
 
 namespace WebCoreApp.Areas.Diaries.Controllers
 {
@@ -19,22 +20,23 @@ namespace WebCoreApp.Areas.Diaries.Controllers
         private readonly IDetailDiaryRepository _detailDiaryRepository;
         private readonly IJobRepository _jobRepository;
         private readonly IBPRepository _bPRepository;
+        private readonly IHubContext<PTSCHub> _hubContext;
 
         public EvaluatesController(IDiaryRepository diaryRepository,
-            IDetailDiaryRepository detailDiaryRepository,
-            IJobRepository jobRepository,
-            IBPRepository bPRepository)
+            IDetailDiaryRepository detailDiaryRepository, IJobRepository jobRepository,
+            IBPRepository bPRepository, IHubContext<PTSCHub> hubContext)
         {
             _detailDiaryRepository = detailDiaryRepository;
             _diaryRepository = diaryRepository;
             _jobRepository = jobRepository;
             _bPRepository = bPRepository;
+            _hubContext = hubContext;
         }
 
-        #region Nhân viên tao báo cáo
+        #region Nhân viên tạo báo cáo
 
         [Route("[area]/[controller]/UserIndex/{Id}")]
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         [HttpGet]
         public async Task<IActionResult> UserIndex(int Id)
         {
@@ -65,7 +67,7 @@ namespace WebCoreApp.Areas.Diaries.Controllers
             return Ok(new { draw = draw, recordsTotal = totals, recordsFiltered = filter, data = data });
         }
 
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         [Route("[area]/[controller]/userget/{Id}")]
         [HttpGet]
         public async Task<IActionResult> UserGet(long Id)
@@ -99,12 +101,12 @@ namespace WebCoreApp.Areas.Diaries.Controllers
             return Ok(new { status = status });
         }
 
-        #endregion Nhân viên tao báo cáo
+        #endregion Nhân viên tạo báo cáo
 
-        #region Đánh giá
+        #region Lãnh đạo đánh giá
 
         [Route("[area]/[controller]/Index/{Id}")]
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         [HttpGet]
         public async Task<IActionResult> Index(int Id)
         {
@@ -114,7 +116,7 @@ namespace WebCoreApp.Areas.Diaries.Controllers
         }
 
         [Route("[area]/[controller]/Comment/{Id}")]
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         [HttpGet]
         public async Task<IActionResult> Comment(long Id)
         {
@@ -123,7 +125,7 @@ namespace WebCoreApp.Areas.Diaries.Controllers
             var tbl = await _detailDiaryRepository.GetByMa(Id);
             var job = await _jobRepository.GetAll();
 
-            ViewBag.JobList = new SelectList(job.Where(m=>m.Id==tbl.JobId), "Id", "TenJob");
+            ViewBag.JobList = new SelectList(job.Where(m => m.Id == tbl.JobId), "Id", "TenJob");
             model.id = tbl.Id;
             model.jobId = tbl.JobId;
             model.method = tbl.Method;
@@ -144,8 +146,9 @@ namespace WebCoreApp.Areas.Diaries.Controllers
                 model.level = tbl.Level3.HasValue ? tbl.Level3.Value : 3;
                 model.comment = tbl.Comment3;
             }
-            return PartialView("_Comment",model);
+            return PartialView("_Comment", model);
         }
+
         [Route("[area]/api/[controller]/savecomment")]
         [Authorize(AuthenticationSchemes = CommonConstants.AuthSchemes)]
         [HttpPost]
@@ -157,7 +160,6 @@ namespace WebCoreApp.Areas.Diaries.Controllers
             model = await _detailDiaryRepository.GetByMa(tbl.id);
             if (Display == 3)
             {
-                
                 model.Comment1 = tbl.comment;
                 model.Level1 = tbl.level;
             }
@@ -166,7 +168,7 @@ namespace WebCoreApp.Areas.Diaries.Controllers
                 model.Comment2 = tbl.comment;
                 model.Level2 = tbl.level;
             }
-            else if(Display > 4)
+            else if (Display > 4)
             {
                 model.Comment3 = tbl.comment;
                 model.Level3 = tbl.level;
@@ -182,20 +184,28 @@ namespace WebCoreApp.Areas.Diaries.Controllers
         {
             int Display = int.Parse(HttpContext.User.FindFirst("Display").Value);
             bool status;
-            
-        
-            status = await _detailDiaryRepository.SaveCommentAll(tbl,Display);
+
+            status = await _detailDiaryRepository.SaveCommentAll(tbl, Display);
             return Ok(new { status = status });
         }
-        #endregion Đánh giá
+
+        #endregion Lãnh đạo đánh giá
 
         [Route("[area]/api/[controller]/SendNotification/{id}")]
         [Authorize(AuthenticationSchemes = CommonConstants.AuthSchemes)]
         [HttpPost]
         public async Task<IActionResult> SendNotification(int id)
         {
-           bool status= await _diaryRepository.SendDiary(id);
-            return Ok(new { status = status });
+            try
+            {
+                List<string> userList = await _diaryRepository.SendDiary(id);
+                await _hubContext.Clients.Users(userList).SendAsync("GetNotification");
+                return Ok(new { status = true });
+            }
+            catch
+            {
+                return Ok(new { status = false });
+            }
         }
     }
 }

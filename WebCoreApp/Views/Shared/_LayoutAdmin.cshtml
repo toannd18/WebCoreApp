@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gentelella Alela! | </title>
+    <title>Gentelella Alela! | @ViewData["Title"] </title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
     <!-- Site -->
@@ -40,7 +40,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                        <a href="~/Home" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
                     </div>
                     <div class="clearfix"></div>
 
@@ -49,14 +49,16 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li>
+                                @await Component.InvokeAsync("Menu")
+
+                                @*<li>
                                     <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="index.html">Dashboard</a></li>
                                         <li><a href="index2.html">Dashboard2</a></li>
                                         <li><a href="index3.html">Dashboard3</a></li>
                                     </ul>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                     </div>
@@ -125,8 +127,10 @@
     @await Html.PartialAsync("_Modal")
 
     <!-- jQuery -->
-    <script src="~/lib/jquery/jquery/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/jquery/jquery.min.js" asp-append-version="true" ></script>
+
     <script src="~/lib/jqueryui/jquery-ui.min.js" asp-append-version="true"></script>
+
     <script src="~/lib/jquery/jquery.serializeJSON/jquery.serializejson.min.js" asp-append-version="true"></script>
     <!-- Bootstrap -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
@@ -175,8 +179,8 @@
     <script src="~/lib/signalr/signalr.js" asp-append-version="true"></script>
     <script src="~/js/SignalrHub/notifications.js" asp-append-version="true"></script>
     <!-- Custom Theme Scripts -->
-    <script src="~/lib/asset/custom.min.js"></script>
-    <script src="~/js/Generic/web.js"></script>
+    <script src="~/lib/asset/custom.min.js" asp-append-version="true"></script>
+    <script src="~/js/Generic/web.js" asp-append-version="true"></script>
     <!-- Validation -->
     @await Html.PartialAsync("_ValidationScriptsPartial")
 

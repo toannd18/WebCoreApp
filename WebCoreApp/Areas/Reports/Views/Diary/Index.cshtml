@@ -1,103 +1,134 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Báo cáo nhật ký";
+
 }
 @section Scripts{
-    <script src="~/lib/Chart.js/Chart.min.js"></script>
-    <script src="~/js/Report/dairyreport.js"></script>
+
+    <script src="~/js/Report/dairyreport.js" asp-append-version="true"></script>
 }
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#BP">Đánh giá theo Phòng</a></li>
-        <li><a data-toggle="tab" href="#TEAM">Đánh giá theo tổ</a></li>
-       
-    </ul>
-    <div class="tab-content">
-        <div id="BP" class="tab-pane fade in active">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="control-label col-md-2">Từ</label>
-                    <div class="col-md-4">
-                        <input type="date" id="dateFrom" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
 
-                    </div>
-                    <label class="control-label col-md-2">Tới</label>
-                    <div class="col-md-4">
-                        <input type="date" id="dateTo" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-4">
-                        <input type="button" class="btn btn-primary" onclick="getdata()" value="Lọc" />
-
-                    </div>
-                </div>
-            </form>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Phòng</th>
-                        <th>Tổng ngày làm việc</th>
-                        <th>Tổng thời gian làm việc (Phút)</th>
-                        <th>Tỷ lệ</th>
-                    </tr>
-                </thead>
-                <tbody id="bdTbl"></tbody>
-            </table>
-
-            <div class="line-bottom-grid">
-                <div class="grid_1">
-                    <h4>Biểu đồ</h4>
-                    <canvas id="pie1"></canvas>
-
-                </div>
+            <!-- Title -->
+            <div class="x_title">
+                <h2>Báo cáo nhật ký</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
             </div>
 
-        </div>
-        <div id="TEAM" class="tab-pane fade">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="control-label col-md-1">Phòng</label>
-                    <div class="col-md-3">
-                        <select id="maBP" class="form-control" asp-items="@(ViewBag.ListBP as SelectList)"></select>
+            <!-- Content -->
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#BP" id="dept-tab" role="tab" data-toggle="tab" aria-expanded="true">Báo cáo theo phòng</a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a href="#TEAM" role="tab" id="team-tab" data-toggle="tab" aria-expanded="false">Báo cáo theo tổ</a>
+                        </li>
 
+                    </ul>
+
+                    <!-- Tabs contents -->
+                    <div id="myTabContent" class="tab-content">
+
+                        <!-- Tab Dept -->
+                        <div role="tabpanel" class="tab-pane fade active in" id="BP" aria-labelledby="dept-tab">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Từ</label>
+                                    <div class="col-md-4">
+                                        <input type="date" id="dateFrom" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+
+                                    </div>
+                                    <label class="control-label col-md-2">Tới</label>
+                                    <div class="col-md-4">
+                                        <input type="date" id="dateTo" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-4">
+                                        <input type="button" class="btn btn-primary" onclick="getdata()" value="Lọc" />
+
+                                    </div>
+                                </div>
+                            </form>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Phòng</th>
+                                        <th>Tổng ngày làm việc</th>
+                                        <th>Tổng thời gian làm việc (Phút)</th>
+                                        <th>Tỷ lệ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bdTbl"></tbody>
+                            </table>
+
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6 col-xs-12">
+                                    <h3>Biểu đồ</h3>
+                                    <canvas id="pie1"></canvas>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Team -->
+                        <div role="tabpanel" class="tab-pane fade" id="TEAM" aria-labelledby="team-tab">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-1">Phòng</label>
+                                    <div class="col-md-3">
+                                        <select id="maBP" class="form-control" asp-items="@(ViewBag.ListBP as SelectList)"></select>
+
+                                    </div>
+                                    <label class="control-label col-md-1">Từ</label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="date_Fto" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+
+                                    </div>
+                                    <label class="control-label col-md-1">Tới</label>
+                                    <div class="col-md-3">
+                                        <input type="date" id="date_Tto" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-1 col-md-4">
+                                        <input type="button" class="btn btn-primary" onclick="getdatato()" value="Lọc" />
+
+                                    </div>
+                                </div>
+                            </form>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tổ</th>
+                                        <th>Tổng ngày làm việc</th>
+                                        <th>Tổng thời gian làm việc (Phút)</th>
+                                        <th>Tỷ lệ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="toTbl"></tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6 col-xs-12">
+                                    <h3>Biểu đồ</h3>
+                                    <canvas id="pie2"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label class="control-label col-md-1">Từ</label>
-                    <div class="col-md-3">
-                        <input type="date" id="date_Fto" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
-
-                    </div>
-                    <label class="control-label col-md-1">Tới</label>
-                    <div class="col-md-3">
-                        <input type="date" id="date_Tto" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-1 col-md-4">
-                        <input type="button" class="btn btn-primary" onclick="getdatato()" value="Lọc" />
-
-                    </div>
-                </div>
-            </form>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Tổ</th>
-                        <th>Tổng ngày làm việc</th>
-                        <th>Tổng thời gian làm việc (Phút)</th>
-                        <th>Tỷ lệ</th>
-                    </tr>
-                </thead>
-                <tbody id="toTbl"></tbody>
-            </table>
-
-            <div class="line-bottom-grid">
-                <div class="grid_1">
-                    <h4>Biểu đồ</h4>
-                    <canvas id="pie2"></canvas>
-
                 </div>
             </div>
         </div>
-       
     </div>
+</div>

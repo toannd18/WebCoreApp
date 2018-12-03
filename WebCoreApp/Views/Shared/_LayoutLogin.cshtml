@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gentelella Alela! | @ViewData["Title"]</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+    <!-- Font Awesome -->
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" asp-append-version="true">
+    @*<!-- NProgress -->
+        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">*@
+    <!-- Animate.css -->
+    <link href="~/css/animate.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Custom Theme Style -->
+    <link href="~/css/custom.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body class="login">
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/jquery/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib//bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+</body>
+
+</html>

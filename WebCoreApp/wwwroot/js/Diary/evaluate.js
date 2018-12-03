@@ -260,7 +260,7 @@ function sendnotification() {
         success: function (data) {
             if (data.status) {
                 web.notify("Gửi thành công", "success");
-                }
+            }
             else if (!data.status) {
                 web.notify("Lỗi xóa", "error");
             }
@@ -268,6 +268,6 @@ function sendnotification() {
         error: function (err) {
             web.notify(err.status, "error");
         }
-        
-    })
+
+    });
 }

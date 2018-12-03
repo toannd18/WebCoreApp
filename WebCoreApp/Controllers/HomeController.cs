@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebCoreApp.Constants;
@@ -7,11 +8,18 @@ using WebCoreApp.Models;
 
 namespace WebCoreApp.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    
     public class HomeController : Controller
     {
+        private readonly IAuthorizationService _authorizationService;
+        public HomeController(IAuthorizationService authorizationService)
+        {
+            _authorizationService = authorizationService;
+        }
+        [Authorize(AuthenticationSchemes = "Identity.Application",Policy ="View;Home")]
         public IActionResult Index()
         {
+          
             return View();
         }
 

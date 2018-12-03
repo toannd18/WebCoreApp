@@ -16,15 +16,19 @@
   <ItemGroup>
     <Compile Remove="Areas\Diaries\Data\**" />
     <Compile Remove="Areas\System\Data\**" />
+    <Compile Remove="Areas\System\Models\**" />
     <Compile Remove="Data\**" />
     <Content Remove="Areas\Diaries\Data\**" />
     <Content Remove="Areas\System\Data\**" />
+    <Content Remove="Areas\System\Models\**" />
     <Content Remove="Data\**" />
     <EmbeddedResource Remove="Areas\Diaries\Data\**" />
     <EmbeddedResource Remove="Areas\System\Data\**" />
+    <EmbeddedResource Remove="Areas\System\Models\**" />
     <EmbeddedResource Remove="Data\**" />
     <None Remove="Areas\Diaries\Data\**" />
     <None Remove="Areas\System\Data\**" />
+    <None Remove="Areas\System\Models\**" />
     <None Remove="Data\**" />
   </ItemGroup>
 
@@ -33,14 +37,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.3" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
+    <PackageReference Include="NETCore.MailKit" Version="2.0.2" />
+    <PackageReference Include="RazorLight" Version="2.0.0-beta1" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
@@ -49,11 +55,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\System\Models\" />
+    <Folder Include="wwwroot\templates\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataContext.Drapper\DataContext.Drapper.csproj" />
     <ProjectReference Include="..\DataContext\DataContext.csproj" />
+    <ProjectReference Include="..\Infrastructure\WebCoreApp.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +70,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Reports\Views\_ViewStart.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

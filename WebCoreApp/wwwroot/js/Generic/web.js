@@ -55,15 +55,20 @@
     },
 
     isLoading: function (){
-       return bootbox.dialog({
+        return bootbox.dialog({
             message: '<div class="loader text-center"></div>',
-            closeButton: false,
-        })
+            closeButton: false
+        });
     }
 };
 $(document).ajaxSend(function (e, xhr, options) {
     if (options.type.toUpperCase() === "POST" || options.type.toUpperCase() === "PUT") {
         var token = $('form').find("input[name='__RequestVerificationToken']").val();
         xhr.setRequestHeader("RequestVerificationToken", token);
+    }
+});
+$(document).ready(function () {
+    if ($("body").hasClass("nav-md")) {
+        $("#menu_toggle").click();
     }
 });

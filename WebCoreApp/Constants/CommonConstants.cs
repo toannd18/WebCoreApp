@@ -1,16 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebCoreApp.Constants
+﻿namespace WebCoreApp.Constants
 {
     public class CommonConstants
     {
-        public const string AuthSchemes =
-        CookieAuthenticationDefaults.AuthenticationScheme + "," +
-        JwtBearerDefaults.AuthenticationScheme;
+        public const string AuthSchemes = "Bear" + ",Identity.Application";
     }
 }

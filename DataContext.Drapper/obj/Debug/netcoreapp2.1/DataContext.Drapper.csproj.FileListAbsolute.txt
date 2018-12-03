@@ -1,0 +1,18 @@
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.1\DataContext.Drapper.deps.json
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.1\DataContext.Drapper.dll
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.csproj.CoreCompileInputs.cache
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.AssemblyInfoInputs.cache
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.AssemblyInfo.cs
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.1\DataContext.Drapper.pdb
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.dll
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.pdb
+E:\2.Programming\PTSCCoreApp\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.csprojAssemblyReference.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.1\DataContext.Drapper.deps.json
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.1\DataContext.Drapper.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.1\DataContext.Drapper.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.csproj.CoreCompileInputs.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.AssemblyInfoInputs.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.AssemblyInfo.cs
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.1\DataContext.Drapper.csprojAssemblyReference.cache

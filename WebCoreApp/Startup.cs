@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using DataContext;
+using DataContext.Drapper.Implemention;
+using DataContext.Drapper.Interface;
+using DataContext.WebCoreApp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.SignalR;
@@ -10,12 +15,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Globalization;
 using System.Text;
-using DataContext.WebCoreApp;
+using WebCoreApp.Extensions.Email;
+using WebCoreApp.Extensions.Polices;
+using WebCoreApp.Extensions.RazorTemplate;
 using WebCoreApp.Extensions.Signlar;
+using WebCoreApp.Extensions.Signlarr;
+using WebCoreApp.Infrastructure.Interfaces;
 using WebCoreApp.Service.Interfaces;
 using WebCoreApp.Service.Repositores;
 
@@ -36,36 +47,51 @@ namespace WebCoreApp
             services.AddDbContext<EFContext>(options => options
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<EFContext>()
+                .AddDefaultTokenProviders();
+
+            // Configure Identity
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            });
+
+            services.ConfigureApplicationCookie(o =>
+            {
+                o.Cookie.HttpOnly = false;
+                o.LoginPath = "/Account/Login";
+                o.AccessDeniedPath = "/Account/Login";
+                o.SlidingExpiration = true;
+            });
+
             services.AddAuthentication(o =>
             {
-                o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme + "," +
-                                                JwtBearerDefaults.AuthenticationScheme;
-                o.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme + "," +
-                                                JwtBearerDefaults.AuthenticationScheme;
-                o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme + "," +
-                                                JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme + ",Identity.Application";
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme + ",Identity.Application";
+                o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme + ",Identity.Application";
             })
                 .AddJwtBearer(o =>
                 {
                     o.RequireHttpsMetadata = false;
                     o.SaveToken = true;
 
-                    o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    o.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = "http://ptscqng.com.vn",
-                        ValidAudience = "http://ptscqng.com.vn",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("My Securety Key for ptsc.com.vn")),
+                        ValidIssuer = Configuration["JwtConfig:ValidIssuer"],
+                        ValidAudience = Configuration["JwtConfig:ValidAudience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfig:Key"])),
                         ClockSkew = TimeSpan.Zero
                     };
-                })
-                       .AddCookie(o =>
-                       {
-                           o.LoginPath = "/Account/Login";
-                           o.AccessDeniedPath = "/Account/Login";
-                       });
+                });
 
             services.AddMvc(options =>
             {
@@ -73,11 +99,38 @@ namespace WebCoreApp
             }).AddJsonOptions(options =>
             options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
+            // Configure MailKit
+
+            services.AddMailKit(o =>
+            {
+                o.UseMailKit(new MailKitOptions()
+                {
+                    Server = Configuration["EmailConfig:Server"],
+                    Port = Configuration.GetValue<int>("EmailConfig:Port"),
+                    SenderEmail = Configuration["EmailConfig:EmailSender"],
+                    SenderName = Configuration["EmailConfig:NameSender"],
+                    Security = Configuration.GetValue<bool>("EmailConfig:SSL"),
+                    Account = Configuration["EmailConfig:EmailSender"],
+                    Password = Configuration["EmailConfig:Password"]
+                });
+            });
+
+            services.AddTransient<IEmailService, EmailService>();
+
+            // Services Templates
+
+            services.AddTransient<IRazorTemplate, RazorTemplate>();
+
             // SignalR Hub
 
             services.AddSignalR();
 
             services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+
+            // AuthorizationProvider
+            services.AddSingleton<IAuthorizationPolicyProvider, RoleClaimsPolicyProvider>();
+
+            services.AddTransient<IAuthorizationHandler, RoleClaimsHandler>();
 
             // Services Database
 
@@ -97,11 +150,20 @@ namespace WebCoreApp
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
 
-            services.AddTransient<IReportDiaryRepository, ReportDiaryRepository>();
+            services.AddTransient<IPositionRepository, PositionRepository>();
+
+            services.AddTransient<IFunctionRepository, FunctionRepository>();
+
+            services.AddTransient<DbInitializer>();
+
+            //Service Dapper
+            services.AddTransient<IReportService, ReportService>();
+
+            services.AddTransient<IWareHouseService, WareHouseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbInitializer seeder)
         {
             if (env.IsDevelopment())
             {

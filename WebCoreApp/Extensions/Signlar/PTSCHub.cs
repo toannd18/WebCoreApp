@@ -6,7 +6,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebCoreApp.Constants;
 
-namespace WebCoreApp.Extensions.Signlar
+
+namespace WebCoreApp.Extensions.Signlarr
 {
     [Authorize(AuthenticationSchemes = CommonConstants.AuthSchemes)]
     public class PTSCHub : Hub
@@ -22,6 +23,7 @@ namespace WebCoreApp.Extensions.Signlar
         {
             await Clients.User(user).SendAsync("ReceiveMessage", user, message);
         }
+
         public async Task SendNotification(List<string> users)
         {
             await Clients.Users(users).SendAsync("SendNotification");

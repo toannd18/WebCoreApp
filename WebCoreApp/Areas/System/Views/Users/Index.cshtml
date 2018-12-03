@@ -1,24 +1,46 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Quản lý tài khoản";
 }
 @section Scripts{ 
 <script src="~/js/System/user.js"></script>
 }
-
-<table class="table table-bordered" id="tblUser">
-    <thead>
-        <tr>
-            <th>Tài Khoản</th>
-            <th>Họ và tên</th>
-            <th>Giới tính</th>
-            <th>Email</th>
-            <th>Ảnh đại diện</th>
-        </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
-
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Đánh giá nhật ký</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="form-group">
+                        <button class="btn btn-info" data-toggle="tooltip" data-placement="right" title="Khôi phục mật khẩu" onclick="reset()"><i class="fa fa-undo"></i></button>
+                        <button class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Phân quyền" onclick="getRole()"><i class="fa fa-certificate"></i></button>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-bordered" id="tblUser">
+                            <thead>
+                                <tr>
+                                    <th>Tài Khoản</th>
+                                    <th>Họ và tên</th>
+                                    <th>Giới tính</th>
+                                    <th>Email</th>
+                                    <th>Ảnh đại diện</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ namespace DataContext.WebCoreApp
     public partial class Permissions
     {
         public int Id { get; set; }
-        public int RoleId { get; set; }
+        public Guid RoleId { get; set; }
         public string FunctionId { get; set; }
         public bool CanRead { get; set; }
         public bool CanUpdate { get; set; }
@@ -14,6 +14,6 @@ namespace DataContext.WebCoreApp
         public bool CanDelete { get; set; }
 
         public Functions Function { get; set; }
-        public AppRole Role { get; set; }
+       
     }
 }

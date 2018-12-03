@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Functions>
+
+@foreach (var item in Model)
+{
+    if (item.Status == true)
+    {
+
+        <li>
+            <a><i class="@item.IconCss"></i> @item.Name <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                @foreach (var item1 in item.InverseParent)
+                {
+                    if (item1.Status == true)
+                    {
+                        <li><a href="@Url.Content(item1.Url)">@item1.Name</a></li>
+                    }
+
+                }
+
+            </ul>
+        </li>
+    }
+
+
+}

@@ -1,52 +1,73 @@
 ﻿
 @{
     ViewData["Title"] = "Đánh giá nhật ký";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  
 }
 @section Scripts{
-    <script src="~/js/Diary/leadload.js"></script>
+    <script src="~/js/Diary/leadload.js" asp-append-version="true"></script>
 }
-<br />
-<div class="form-group">
-    <button class="btn btn-info" onclick="getPage()" data-toggle="tooltip" data-placement="bottom" title="Chi tiết"><span class="fa fa-info-circle"></span></button>
-    @if (ViewBag.Display > 3)
-    {
-        <label class="control-label col-md-1">Phòng</label>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
 
-        <div class="col-md-2">
-            @if (ViewBag.Display < 6)
-            {
-                <select id="maBp" name="maBp" class="form-control" asp-items="@(ViewBag.Bp as SelectList)"></select>
+                <div class="x_title">
+                    <h2>Đánh giá nhật ký</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
 
-            }
-            else
-            {
-                <select id="maBp" name="maBp" class="form-control" asp-items="@(ViewBag.Bp as SelectList)">
-                    <option value="">--- Tất cả ---</option>
-                </select>
+                <div class="x_content">
+                    <div class="form-group">
+                        <button class="btn btn-info" onclick="getPage()" data-toggle="tooltip" data-placement="bottom" title="Chi tiết"><i class="fa fa-info-circle"></i></button>
+                        @if (ViewBag.Display > 3)
+                        {
+                            <label class="control-label col-md-1">Phòng</label>
 
-            }
+                            <div class="col-md-2">
+                                @if (ViewBag.Display < 6)
+                                {
+                                    <select id="maBp" name="maBp" class="form-control" asp-items="@(ViewBag.Bp as SelectList)"></select>
+
+                                }
+                                else
+                                {
+                                    <select id="maBp" name="maBp" class="form-control" asp-items="@(ViewBag.Bp as SelectList)">
+                                        <option value="">--- Tất cả ---</option>
+                                    </select>
+
+                                }
+                            </div>
+                            <label class="control-label col-md-1">Tổ</label>
+                            <div class="col-md-2">
+                                <select id="maTo" class="form-control" asp-items="@(ViewBag.To as SelectList)">
+                                    <option value="">--- Tất cả ---</option>
+                                </select>
+
+                            </div>
+
+                        }
+
+                    </div>
+                    <table class="table-striped table-bordered" id="tblDỉary" style="width:100%;color:#080808">
+                        <thead>
+                            <tr>
+                                <th>Thời gian</th>
+                                <th>Họ và tên</th>
+                                <th>Tổng kết các công việc chính</th>
+                                <th>Người đánh giá</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <label class="control-label col-md-1">Tổ</label>
-        <div class="col-md-2">
-            <select id="maTo" class="form-control" asp-items="@(ViewBag.To as SelectList)">
-                <option value="">--- Tất cả ---</option>
-            </select>
-
-        </div>
-
-    }
-
-</div>
-<table class="table-striped table-bordered" id="tblDỉary">
-    <thead>
-        <tr>
-            <th>Thời gian</th>
-            <th>Họ và tên</th>
-            <th>Tổng kết các công việc chính</th>
-            <th>Người đánh giá</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+    </div>
+                
 

@@ -1,0 +1,14 @@
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\obj\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.csprojAssemblyReference.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\obj\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.csproj.CoreCompileInputs.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\obj\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.AssemblyInfoInputs.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\obj\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.AssemblyInfo.cs
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\bin\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.deps.json
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\bin\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\bin\Debug\netcoreapp2.1\DataContext.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\bin\Debug\netcoreapp2.1\DataContext.Drapper.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\bin\Debug\netcoreapp2.1\DataContext.Drapper.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\bin\Debug\netcoreapp2.1\DataContext.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\obj\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.csproj.CopyComplete
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\bin\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\obj\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\Infrastructure\obj\Debug\netcoreapp2.1\WebCoreApp.Infrastructure.pdb
