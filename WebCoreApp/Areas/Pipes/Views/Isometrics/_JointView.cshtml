@@ -1,0 +1,59 @@
+﻿@model JointViewModel
+<form id="frmIsoJoint" class="form-horizontal form-label-left">
+
+
+    <input asp-for="@Model.IsoName" hidden />
+    <div class="form-group">
+        <label asp-for="@Model.Joint" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+
+            <input asp-for="@Model.Joint" class="form-control">
+
+            <span asp-validation-for="@Model.Joint" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.Rev" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+
+            <input asp-for="@Model.Rev" class="form-control" />
+
+            <span asp-validation-for="@Model.Rev" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.Size" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+
+            <input asp-for="@Model.Size" class="form-control" />
+
+            <span asp-validation-for="@Model.Size" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.TypeJoint" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+
+            <input asp-for="@Model.TypeJoint" class="form-control">
+
+            <span asp-validation-for="@Model.TypeJoint" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.SF" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+
+            <select asp-for="@Model.SF" class="form-control">
+                <option value="S">S</option>
+                <option value="F">F</option>
+            </select>
+
+            <span asp-validation-for="@Model.SF" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.Status" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+
+            <select asp-for="@Model.Status" class="form-control">
+                <option value=""></option>
+                <option value="D">D</option>
+            </select>
+
+            <span asp-validation-for="@Model.Status" class="text-danger"></span>
+        </div>
+    </div>
+
+</form>

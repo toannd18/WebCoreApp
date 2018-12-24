@@ -1,0 +1,91 @@
+﻿@model IsometricViewModel
+<form id="frmIsometric" class="form-horizontal form-label-left">
+    <div class="form-group">
+        <label asp-for="@Model.DrawName" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-10 col-xs-12 col-sm-10">
+            @if (Model.Update)
+            {
+                <input asp-for="@Model.DrawName" class="form-control" readonly />
+            }
+            else
+            {
+                <input asp-for="@Model.DrawName" class="form-control" onkeyup="this.value = this.value.toUpperCase()" />
+            }
+
+            <span asp-validation-for="@Model.DrawName" class="text-danger"></span>
+        </div>
+    </div>
+    <input asp-for="@Model.Update" hidden />
+    <div class="form-group">
+        <label asp-for="@Model.Line" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-10 col-xs-12 col-sm-10">
+
+            <input asp-for="@Model.Line" class="form-control">
+
+            <span asp-validation-for="@Model.Line" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Rev" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-4 col-xs-4 col-sm-10">
+
+            <input asp-for="@Model.Rev" class="form-control" />
+
+            <span asp-validation-for="@Model.Rev" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.Size" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-4 col-xs-4 col-sm-10">
+
+            <input asp-for="@Model.Size" class="form-control" />
+
+            <span asp-validation-for="@Model.Size" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Unit" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-4 col-xs-4 col-sm-10">
+
+            <input asp-for="@Model.Unit" class="form-control" />
+
+            <span asp-validation-for="@Model.Unit" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.PipeClass" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-4 col-xs-4 col-sm-10">
+
+            <input asp-for="@Model.PipeClass" class="form-control" />
+
+            <span asp-validation-for="@Model.PipeClass" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Type" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-4 col-xs-4 col-sm-10">
+
+            <input asp-for="@Model.Type" class="form-control" />
+
+            <span asp-validation-for="@Model.Type" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.Material" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-4 col-xs-4 col-sm-10">
+
+            <input asp-for="@Model.Material" class="form-control" />
+
+            <span asp-validation-for="@Model.Material" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Remark" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-10 col-xs-12 col-sm-10">
+
+            <textarea asp-for="@Model.Remark" class="form-control"></textarea>
+
+            <span asp-validation-for="@Model.Remark" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-4">
+            <input type="button" class="btn btn-info" onclick="saveData()" value="Lưu" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </div>
+    </div>
+</form>

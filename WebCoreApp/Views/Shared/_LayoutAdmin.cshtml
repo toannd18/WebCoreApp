@@ -30,8 +30,9 @@
         <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
         <!-- bootstrap-daterangepicker -->
         <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">*@
+    <!-- Switchery -->
+    <link href="~/css/switchery.min.css" rel="stylesheet" asp-append-version="true" />
     <!-- Custom Theme Style -->
- 
     <link href="~/css/custom.css" rel="stylesheet" asp-append-version="true" />
 </head>
 <body class="nav-md">
@@ -52,13 +53,13 @@
                                 @await Component.InvokeAsync("Menu")
 
                                 @*<li>
-                                    <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="index.html">Dashboard</a></li>
-                                        <li><a href="index2.html">Dashboard2</a></li>
-                                        <li><a href="index3.html">Dashboard3</a></li>
-                                    </ul>
-                                </li>*@
+                                        <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="index.html">Dashboard</a></li>
+                                            <li><a href="index2.html">Dashboard2</a></li>
+                                            <li><a href="index3.html">Dashboard3</a></li>
+                                        </ul>
+                                    </li>*@
                             </ul>
                         </div>
                     </div>
@@ -81,39 +82,36 @@
                     <!-- /menu footer buttons -->
                 </div>
             </div>
-                <!-- top navigation -->
-                <div class="top_nav">
-                    <div class="nav_menu">
-                        <nav>
-                            <div class="nav toggle">
-                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                            </div>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <ul class="nav navbar-nav navbar-right">
-                                    @await Component.InvokeAsync("Login")
-                                    <li role="presentation" class="dropdown" id="_notificationPush">
-                                        @await Component.InvokeAsync("Notification")
-                                    </li>
-                                </ul>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                @await Component.InvokeAsync("Login")
+                                <li role="presentation" class="dropdown" id="_notificationPush">
+                                    @await Component.InvokeAsync("Notification")
+                                </li>
+                            </ul>
 
-                            }
+                        }
 
-                        </nav>
-                    </div>
+                    </nav>
                 </div>
-                <!-- /top navigation -->
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
 
-                <!-- page content -->
-                <div class="right_col" role="main">
-                   
-                        @RenderBody()
-               
-                    
-                </div>
-                <!-- page content -->
-            
+                @RenderBody()
 
+
+            </div>
+            <!-- page content -->
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
@@ -127,7 +125,7 @@
     @await Html.PartialAsync("_Modal")
 
     <!-- jQuery -->
-    <script src="~/lib/jquery/jquery/jquery.min.js" asp-append-version="true" ></script>
+    <script src="~/lib/jquery/jquery/jquery.min.js" asp-append-version="true"></script>
 
     <script src="~/lib/jqueryui/jquery-ui.min.js" asp-append-version="true"></script>
 
@@ -149,7 +147,8 @@
     <script src="~/lib/datatables/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/dataTables.select.min.js" asp-append-version="true"></script>
-
+    <!-- Switchery -->
+    <script src="~/lib/asset/switchery.min.js" asp-append-version="true"></script>
     @*<!-- NProgress -->
         <script src="../vendors/nprogress/nprogress.js"></script>
         <!-- gauge.js -->

@@ -77,7 +77,7 @@ using DataContext.WebCoreApp;
                 WriteLiteral("\r\n\r\n    ");
                 EndContext();
                 BeginContext(80, 76, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2775dfc4eb6a4ea9a3a1334e4ce5aa7d", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7682fe181f35449db92e0713566bf99d", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -145,7 +145,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.AppendVersion = true;
                             ");
             EndContext();
             BeginContext(1767, 1177, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "54233082b47f48388a84c6718267744a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b9e0b55503f43bf8185a1b619ecc9ac", async() => {
                 BeginContext(1797, 278, true);
                 WriteLiteral(@"
                                 <div class=""form-group"">
@@ -229,12 +229,12 @@ WriteAttributeValue("", 2419, DateTime.Today.ToString("yyyy-MM-dd"), 2419, 38, f
             WriteLiteral("- Tab Team -->\r\n                        <div role=\"tabpanel\" class=\"tab-pane fade\" id=\"TEAM\" aria-labelledby=\"team-tab\">\r\n                            ");
             EndContext();
             BeginContext(4118, 1510, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0e8810a94fa045caa79b65e9a60ffc8a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "de9bc9633f414784ba295c8fd646d8c5", async() => {
                 BeginContext(4148, 249, true);
                 WriteLiteral("\r\n                                <div class=\"form-group\">\r\n                                    <label class=\"control-label col-md-1\">Phòng</label>\r\n                                    <div class=\"col-md-3\">\r\n                                        ");
                 EndContext();
                 BeginContext(4397, 92, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ffe268674273446d999cf1f29bad3391", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b4e67af87a1d4ca58d9a9b149cb4ecf8", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper>();

@@ -74,7 +74,7 @@ using WebCoreApp.Infrastructure.ViewModels.Notification;
             WriteLiteral("\r\n        <i class=\" fa fa-angle-down\"></i>\r\n    </a>\r\n    <ul class=\"dropdown-menu dropdown-usermenu pull-right\">\r\n        <li><a href=\"javascript:;\"> Profile</a></li>\r\n        <li>\r\n            ");
             EndContext();
             BeginContext(393, 96, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "22c80da4a98c4e888073c885f29a4ff5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bbcc96d9c4104a9f803d0166d1987233", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();

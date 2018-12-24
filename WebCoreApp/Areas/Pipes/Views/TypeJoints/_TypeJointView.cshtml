@@ -1,0 +1,34 @@
+﻿@model TypeJointViewModel
+<form id="frmTJoint" class="form-horizontal form-label-left">
+    <div class="form-group">
+        <label asp-for="@Model.Type" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-10 col-xs-12 col-sm-10">
+            @if (Model.Update)
+            {
+                <input asp-for="@Model.Type" class="form-control" readonly />
+            }
+            else
+            {
+                <input asp-for="@Model.Type" class="form-control" onkeyup="this.value = this.value.toUpperCase()"/>
+            }
+
+            <span asp-validation-for="@Model.Type" class="text-danger"></span>
+        </div>
+    </div>
+    <input asp-for="@Model.Update" hidden />
+    <div class="form-group">
+        <label asp-for="@Model.Description" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+        <div class="col-md-10 col-xs-12 col-sm-10">
+
+            <textarea asp-for="@Model.Description" class="form-control"></textarea>
+
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-4">
+            <input type="button" class="btn btn-info" onclick="saveData()" value="Lưu" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </div>
+    </div>
+</form>

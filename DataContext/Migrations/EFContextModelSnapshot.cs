@@ -231,45 +231,62 @@ namespace DataContext.Migrations
 
                     b.Property<DateTime>("DateUpdated");
 
-                    b.Property<string>("DrawName");
+                    b.Property<string>("DrawName")
+                        .IsRequired();
 
                     b.Property<string>("Heate1")
+                        .HasColumnType("varchar(20)")
                         .HasMaxLength(20);
 
                     b.Property<string>("Heate2")
+                        .HasColumnType("varchar(20)")
                         .HasMaxLength(20);
 
                     b.Property<string>("Joint")
                         .IsRequired()
                         .HasMaxLength(4);
 
+                    b.Property<string>("Remark")
+                        .HasMaxLength(255);
+
                     b.Property<string>("Rev")
                         .HasMaxLength(4);
 
-                    b.Property<byte>("SF")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("SF")
+                        .HasColumnType("varchar(1)")
+                        .HasMaxLength(1);
 
                     b.Property<decimal>("Size")
                         .HasColumnType("decimal(5,2)");
 
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("Status")
+                        .HasColumnType("varchar(1)")
+                        .HasMaxLength(1);
 
                     b.Property<string>("TypeJoint")
                         .IsRequired()
+                        .HasColumnType("varchar(4)")
                         .HasMaxLength(4);
 
                     b.Property<string>("UserCreated");
 
                     b.Property<string>("UserUpdated");
 
-                    b.Property<string>("Welder1");
+                    b.Property<string>("Welder1")
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Welder2");
+                    b.Property<string>("Welder2")
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Welder3");
+                    b.Property<string>("Welder3")
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Welder4");
+                    b.Property<string>("Welder4")
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<DateTime?>("WeldingDate")
                         .HasColumnType("Date");
@@ -355,6 +372,30 @@ namespace DataContext.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("MaterialPipes");
+                });
+
+            modelBuilder.Entity("DataContext.WebCoreApp.Pipe.Project", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateUpdated");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Name")
+                        .HasColumnName("varchar(5)");
+
+                    b.Property<string>("UserCreated");
+
+                    b.Property<string>("UserUpdated");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("DataContext.WebCoreApp.Pipe.TypeJoint", b =>
@@ -1402,7 +1443,8 @@ namespace DataContext.Migrations
                 {
                     b.HasOne("DataContext.WebCoreApp.Pipe.Isometric", "Isometric")
                         .WithMany("IsoJoints")
-                        .HasForeignKey("DrawName");
+                        .HasForeignKey("DrawName")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DataContext.WebCoreApp.Pipe.WelderCertification", b =>

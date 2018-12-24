@@ -1,0 +1,230 @@
+﻿@model JointViewModel
+@{
+    ViewData["Title"] = "Danh sách bản vẽ";
+}
+
+@section Scripts{
+    <script src="~/js/Pipe/isometric.js" asp-append-version="true"></script>
+    <script src="~/js/Pipe/isojoint.js" asp-append-version="true"></script>
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <!-- Tiêu đề -->
+            <div class="x_title">
+                <h2>Danh sách bản vẽ</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <!-- Nội dung -->
+            <div class="x_content">
+                <div class="form-group">
+                    <button class="btn btn-success" onclick="detail('',false)" data-toggle="tooltip" data-placement="bottom" title="Thêm"><i class="fa fa-plus-square-o"></i></button>
+                    <button class="btn btn-primary" onclick="getdata()" data-toggle="tooltip" data-placement="bottom" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="btn btn-danger" onclick="deleteData()" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-info" onclick="openModal()" data-toggle="tooltip" data-placement="bottom" title="Chi tiết"><i class="fa fa-info-circle"></i></button>
+                </div>
+                <table class="table-striped table-bordered" id="tblIsometric" style="width:100%;color:#080808">
+                    <thead>
+                        <tr>
+                            <th>Tên bản vẽ</th>
+                            <th>Rev</th>
+                            <th>Size</th>
+                            <th>Unit</th>
+                            <th>Pipe Class</th>
+                            <th>Line</th>
+                            <th>Type</th>
+                            <th>Vật liệu</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Joint*@
+
+<div id="modalJoint" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Danh sách mối hàn</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Bản vẽ</label>
+                        <div class="col-md-6 col-xs-12 col-sm-6">
+
+                            <input value="" class="form-control" readonly id="txtIso" />
+                        </div>
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Line</label>
+                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                            <input value="" class="form-control" readonly id="txtLine" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Rev</label>
+                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                            <input value="" class="form-control" readonly id="txtRev" />
+                        </div>
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Size</label>
+                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                            <input value="" class="form-control" readonly id="txtSize" />
+                        </div>
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Unit</label>
+                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                            <input value="" class="form-control" readonly id="txtUnit" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">PipeClass</label>
+                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                            <input value="" class="form-control" readonly id="txtPipe" />
+                        </div>
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Kiểu</label>
+                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                            <input value="" class="form-control" readonly id="txtType" />
+                        </div>
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Vật liệu</label>
+                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                            <input value="" class="form-control" readonly id="txtMaterial" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2 col-md-2 col-xs-12">Remark</label>
+                        <div class="col-md-10 col-xs-12 col-sm-10">
+
+                            <textarea value="" readonly id="txtRemarkl" class="form-control" type="text">  </textarea>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <!-- Tiêu đề -->
+                            <div class="x_title">
+                                <div class="form-group">
+                                    <button class="btn btn-success"  data-toggle="tooltip" data-placement="bottom" title="Thêm" onclick="addJoint()"><i class="fa fa-plus-square-o"></i></button>
+                                    <button class="btn btn-primary"  data-toggle="tooltip" data-placement="bottom" title="Lưu" onclick="saveJoint(this)"><i class="fa fa-save"></i></button>
+                                    <button class="btn btn-danger"  data-toggle="tooltip" data-placement="bottom" title="Xóa" onclick="deleteJoint(this)"><i class="fa fa-trash-o"></i></button>
+                                  
+                                    <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                                                 <div class="input-group">
+                                                         <input value="" placeholder="Tìm kiếm" type="text" id="txtSearch" class="form-control"/>
+                                                     <span class="input-group-btn">
+                                                         <button class="btn btn-default"  data-toggle="tooltip" data-placement="bottom" title="Tìm kiếm"><i class="fa fa-search"></i></button>
+                                                     </span>
+                                                 </div>
+                                    </div>
+                                </div>
+                          
+                                <div class="clearfix"></div>
+                            </div>
+                            <!-- Nội dung -->
+                            <div class="x_content">
+                                <form id="frmIsoJoint" class="form-horizontal form-label-left">
+
+
+                                    <input asp-for="@Model.IsoName" hidden />
+                                    <input asp-for="@Model.Id" hidden />
+                                    <input asp-for="@Model.UpdateJoint" hidden />
+                                    <div class="form-group">
+                                        <label asp-for="@Model.Joint" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+                                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                                            <input asp-for="@Model.Joint" class="form-control" readonly>
+                                               <span class="text-danger" id="txtAlert" hidden>Mối này đã tồn tại</span>
+                                            <span asp-validation-for="@Model.Joint" class="text-danger"></span>
+                                        </div>
+                                        <label asp-for="@Model.Rev" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+                                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                                            <input asp-for="@Model.Rev" class="form-control" />
+
+                                            <span asp-validation-for="@Model.Rev" class="text-danger"></span>
+                                        </div>
+                                        <label asp-for="@Model.Size" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+                                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                                            <input asp-for="@Model.Size" class="form-control" />
+
+                                            <span asp-validation-for="@Model.Size" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="@Model.TypeJoint" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+                                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                                            <input asp-for="@Model.TypeJoint" class="form-control">
+
+                                            <span asp-validation-for="@Model.TypeJoint" class="text-danger"></span>
+                                        </div>
+                                        <label asp-for="@Model.SF" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+                                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                                            <select asp-for="@Model.SF" class="form-control">
+                                                <option value="S">S</option>
+                                                <option value="F">F</option>
+                                            </select>
+
+                                            <span asp-validation-for="@Model.SF" class="text-danger"></span>
+                                        </div>
+                                        <label asp-for="@Model.Status" class="control-label col-sm-2 col-md-2 col-xs-12"></label>
+                                        <div class="col-md-2 col-xs-12 col-sm-2">
+
+                                            <select asp-for="@Model.Status" class="form-control">
+                                                <option value=""></option>
+                                                <option value="D">D</option>
+                                            </select>
+
+                                            <span asp-validation-for="@Model.Status" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                </form>
+                                @*Table Joint*@
+                                <table class="table-bordered" id="tblIsoJoint" style="width:100%;color:#080808">
+                                    <thead>
+                                    
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên mối</th>
+                                            <th>Rev</th>
+                                            <th>Loại mối</th>
+                                            <th>Size</th>
+                                            <th>S/F</th>
+                                            <th>Tình trạng</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

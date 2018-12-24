@@ -1,0 +1,164 @@
+﻿@model WeldingViewModel
+@{
+    ViewData["Title"] = "Mối hàn";
+}
+@section Scripts{
+    <script src="~/js/Pipe/welding.js" asp-append-version="true"></script>
+
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <!-- Tiêu đề -->
+            <div class="x_title">
+                <h2>Mối hàn</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <!-- Nội dung -->
+            <div class="x_content">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+
+                    <section class="panel">
+                        <div class="x_title">
+                            <h4>Danh sách bản vẽ</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <input type="text" id="iso" hidden readonly />
+                        <table class="table-striped table-bordered" id="tblIso" style="width:100%;color:#080808">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên bản vẽ</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </section>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <form class="form-horizontal" id="frmWelding">
+                        <input asp-for="@Model.Id" hidden readonly />
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Joint</label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.txtjoint" class="form-control" readonly  />
+                                <span asp-validation-for="@Model.txtjoint" class="text-danger"></span>
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Size</label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input id="txtsize" class="form-control" readonly />
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Kiểu mối</label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input id="tJoint" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.WeldingDate" class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.WeldingDate" class="form-control" autocomplete="off" />
+                                <span asp-validation-for="@Model.WeldingDate" class="text-danger"></span>
+                            </div>
+                            <label asp-for="@Model.Heate1" class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.Heate1" class="form-control"  />
+                                <span asp-validation-for="@Model.Heate1" class="text-danger"></span>
+                            </div>
+                            <label asp-for="@Model.Heate2" class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.Heate2" class="form-control"  />
+                                <span asp-validation-for="@Model.Heate2" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Welder1" class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.Welder1" class="form-control"  />
+                                <span asp-validation-for="@Model.Welder1" class="text-danger"></span>
+                            </div>
+                            <label asp-for="@Model.Welder2" class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.Welder2" class="form-control"  />
+                                <span asp-validation-for="@Model.Welder2" class="text-danger"></span>
+                            </div>
+                           
+                            <div class="col-md-offset-2 col-sm-offset-2 col-md-2 col-sm-2 col-xs-12">
+                                <button class="btn btn-success form-control" type="button" onclick="saveData(this)" ><i class="fa fa-save"></i> Lưu</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Welder3" class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.Welder3" class="form-control"  />
+                                <span asp-validation-for="@Model.Welder3" class="text-danger"></span>
+                            </div>
+                            <label asp-for="@Model.Welder4" class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="@Model.Welder4" class="form-control"  />
+                                <span asp-validation-for="@Model.Welder4" class="text-danger"></span>
+                            </div>
+                          
+                            <div class="col-md-offset-2 col-sm-offset-2 col-md-2 col-sm-2 col-xs-12">
+                                <button class="btn btn-default form-control" type="button" onclick="removeData(this)"><i class="fa fa-wrench"></i> Xóa ngày hàn</button>
+                            </div>
+                        </div>
+                    </form>
+                
+                    <br>
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Chưa hàn</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Đã hàn</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                <table class="table-striped table-bordered" id="tblWelding" style="width:100%;color:#080808">
+                                    <thead>
+                                        <tr>
+                                            <th>Mối hàn</th>
+                                            <th>Size</th>
+                                            <th>Loại mối</th>
+                                            <th>Ngày hàn</th>
+                                            <th>Thợ hàn 1</th>
+                                            <th>Thợ hàn 2</th>
+                                            <th>Thợ hàn 3</th>
+                                            <th>Thợ hàn 4</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                <table class="table-striped table-bordered" id="tblWelded" style="width:100%;color:#080808">
+                                    <thead>
+                                        <tr>
+                                            <th>Mối hàn</th>
+                                            <th>Size</th>
+                                            <th>Loại mối</th>
+                                            <th>Ngày hàn</th>
+                                            <th>Thợ hàn 1</th>
+                                            <th>Thợ hàn 2</th>
+                                            <th>Thợ hàn 3</th>
+                                            <th>Thợ hàn 4</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

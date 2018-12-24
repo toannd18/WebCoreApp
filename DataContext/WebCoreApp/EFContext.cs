@@ -57,6 +57,8 @@ namespace DataContext.WebCoreApp
         public virtual DbSet<Welder> Welders { get; set; }
         public virtual DbSet<WelderCertification> WelderCertifications { get; set; }
 
+        public virtual DbSet<Project> Projects { get; set; }
+
         #endregion PipeClass
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -916,10 +918,31 @@ namespace DataContext.WebCoreApp
             modelBuilder.Entity<IsoJoint>(entity =>
             {
                 entity.Property(e => e.Status)
-                        .HasColumnType("tinyint");
+                        .HasColumnType("varchar(1)");
 
                 entity.Property(e => e.SF)
-                        .HasColumnType("tinyint");
+                        .HasColumnType("varchar(1)");
+
+                entity.Property(e => e.TypeJoint)
+                        .HasColumnType("varchar(4)");
+
+                entity.Property(e => e.Heate1)
+                        .HasColumnType("varchar(20)");
+
+                entity.Property(e => e.Heate1)
+                      .HasColumnType("varchar(20)");
+
+                entity.Property(e => e.Welder1)
+                     .HasColumnType("varchar(20)");
+
+                entity.Property(e => e.Welder2)
+                     .HasColumnType("varchar(20)");
+
+                entity.Property(e => e.Welder3)
+                     .HasColumnType("varchar(20)");
+
+                entity.Property(e => e.Welder4)
+                     .HasColumnType("varchar(20)");
 
                 entity.Property(e => e.WeldingDate)
                        .HasColumnType("Date");
@@ -927,6 +950,7 @@ namespace DataContext.WebCoreApp
                 entity.HasOne(d => d.Isometric)
                        .WithMany(e => e.IsoJoints)
                         .HasForeignKey(e => e.DrawName);
+
                 entity.Property(e => e.Size).HasColumnType("decimal(5,2)");
             });
 
@@ -974,6 +998,8 @@ namespace DataContext.WebCoreApp
                 .HasForeignKey(e => e.IdWelder)
                 .OnDelete(DeleteBehavior.ClientSetNull);
             });
+
+          
         }
     }
 }

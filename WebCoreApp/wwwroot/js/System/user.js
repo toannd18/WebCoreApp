@@ -88,7 +88,7 @@ function getRole() {
         });
     })
     .fail((err, txtStatus) => {
-        web.notify(`${er}: ${txtStatus}`, "error");
+        web.notify(`${err}: ${txtStatus}`, "error");
     });
 }
 

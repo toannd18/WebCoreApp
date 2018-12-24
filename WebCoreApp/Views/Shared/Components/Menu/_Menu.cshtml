@@ -10,16 +10,33 @@
             <ul class="nav child_menu">
                 @foreach (var item1 in item.InverseParent)
                 {
-                    if (item1.Status == true)
+                    if (item1.Status.Value)
                     {
-                        <li><a href="@Url.Content(item1.Url)">@item1.Name</a></li>
+                        if (item1.Url != "/")
+                        {
+                            <li><a href="@Url.Content(item1.Url)">@item1.Name</a></li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a>@item1.Name <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    @foreach (var item2 in item1.InverseParent)
+                                    {
+                                        if (item2.Status.Value)
+                                        {
+                                            <li><a href="@Url.Content(item2.Url)">@item2.Name</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+
                     }
 
                 }
-
             </ul>
         </li>
     }
-
 
 }

@@ -1,0 +1,25 @@
+﻿<form class="form-horizontal">
+    <div class="form-group">
+        <input id="Id" type="text" hidden />
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Danh sách role</label>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <select id="role" asp-items="@ViewBag.ListRole" class="form-control">
+                <option value="">--- Chọn ---</option>
+            </select>
+        </div>
+        <input type="button" class="btn btn-primary" onclick="updatePermission(this)"  value="Cập nhật"/>
+    </div>
+   
+</form>
+<table class="table table-bordered" style="width:100%">
+    <thead class="thead-light">
+        <tr>
+            <th>Xem</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody id="tbl">
+
+    </tbody>
+</table>

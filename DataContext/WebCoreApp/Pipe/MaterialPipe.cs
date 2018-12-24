@@ -13,9 +13,9 @@ namespace DataContext.WebCoreApp.Pipe
         public string Name { get; set; }
         [StringLength(255)]
         public string Description { get; set; }
-        public string UserCreated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string UserUpdated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime DateCreated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime DateUpdated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string UserCreated { get ; set ; }
+        public string UserUpdated { get ; set ; }
+        public DateTime DateCreated { get ; set ; }
+        public DateTime DateUpdated { get ; set ; }
     }
 }

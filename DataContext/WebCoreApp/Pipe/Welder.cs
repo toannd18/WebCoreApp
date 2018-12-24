@@ -10,6 +10,7 @@ namespace DataContext.WebCoreApp.Pipe
     {
         [Key]
         [StringLength(20)]
+    
         public string Id { get; set; }
 
         [Required]

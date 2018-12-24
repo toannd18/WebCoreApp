@@ -50,7 +50,7 @@ namespace WebCoreApp.Areas.Diaries.Controllers
             {
                 search = Request.Form["search[value]"];
             }
-            search = Request.Form["search[value]"];
+           
             string oderId = Request.Form["order[0][column]"];
             string oderDir = Request.Form["order[0][dir]"];
 

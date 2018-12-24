@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Danh sách vật liệu";
+}
+@section Scripts{
+    <script src="~/js/Pipe/material.js" asp-append-version="true"></script>
+}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <!-- Tiêu đề -->
+                <div class="x_title">
+                    <h2>Danh sách vật liệu</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- Nội dung -->
+                <div class="x_content">
+                    <div class="form-group">
+                        <button class="btn btn-success" onclick="detail('',false)" data-toggle="tooltip" data-placement="bottom" title="Thêm"><i class="fa fa-plus-square-o"></i></button>
+                        <button class="btn btn-primary" onclick="getdata()" data-toggle="tooltip" data-placement="bottom" title="Sửa"><i class="fa fa-pencil-square-o"></i></button>
+                        <button class="btn btn-danger" onclick="deleteData(this)" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fa fa-trash-o"></i></button>
+                    
+                    </div>
+                    <table class="table-striped table-bordered" id="tblMaterial" style="width:100%;color:#080808">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã vật liệu</th>
+                                <th>Mô tả</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+

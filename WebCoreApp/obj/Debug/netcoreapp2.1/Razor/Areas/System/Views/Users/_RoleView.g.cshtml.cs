@@ -65,17 +65,17 @@ using DataContext.WebCoreApp;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(26, 929, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00371302ca93498889d6c1dad74b8b8b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e6e4c5f4159145bfbebc0722184ec2c9", async() => {
                 BeginContext(56, 185, true);
                 WriteLiteral("\r\n    <div class=\"form-group\">\r\n        <label class=\"control-label col-md-3 col-sm-3 col-xs-12\">Danh sách quyền</label>\r\n        <div class=\"col-md-9 col-sm-9 col-xs-12\">\r\n            ");
                 EndContext();
                 BeginContext(241, 152, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9accd05cd0184afc94f0b7c47418a772", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "da24fe416e3b4b639e50abd2b5e52305", async() => {
                     BeginContext(314, 18, true);
                     WriteLiteral("\r\n                ");
                     EndContext();
                     BeginContext(332, 38, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "070b5c42171b4c0684239ba45be7956a", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82ca40039ce441c49973f45bdb08ca73", async() => {
                         BeginContext(349, 12, true);
                         WriteLiteral("--- Chọn ---");
                         EndContext();

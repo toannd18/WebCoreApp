@@ -1,4 +1,5 @@
-﻿using DataContext;
+﻿using AutoMapper;
+using DataContext;
 using DataContext.Drapper.Implemention;
 using DataContext.Drapper.Interface;
 using DataContext.WebCoreApp;
@@ -27,6 +28,8 @@ using WebCoreApp.Extensions.RazorTemplate;
 using WebCoreApp.Extensions.Signlar;
 using WebCoreApp.Extensions.Signlarr;
 using WebCoreApp.Infrastructure.Interfaces;
+using WebCoreApp.Infrastructure.Interfaces.Pipes;
+using WebCoreApp.Infrastructure.Repositores.Pipes;
 using WebCoreApp.Service.Interfaces;
 using WebCoreApp.Service.Repositores;
 
@@ -132,6 +135,7 @@ namespace WebCoreApp
 
             services.AddTransient<IAuthorizationHandler, RoleClaimsHandler>();
 
+            services.AddAutoMapper();
             // Services Database
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -153,6 +157,18 @@ namespace WebCoreApp
             services.AddTransient<IPositionRepository, PositionRepository>();
 
             services.AddTransient<IFunctionRepository, FunctionRepository>();
+
+            services.AddTransient<IWelderRepository, WelderRepository>();
+
+            services.AddTransient<IMaterialPipeRepository, MaterialPipeRepository>();
+
+            services.AddTransient<ITypeJointRepository, TypeJointRepository>();
+
+            services.AddTransient<IIsometricRepository, IsometricRepository>();
+
+            services.AddTransient<IIsoJointRepository, IsoJointRepository>();
+
+            services.AddTransient<IProjectRepository, ProjectRepository>();
 
             services.AddTransient<DbInitializer>();
 

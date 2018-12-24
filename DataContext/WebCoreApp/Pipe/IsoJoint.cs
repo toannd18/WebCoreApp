@@ -1,12 +1,12 @@
-﻿using DataContext.Enums;
-using DataContext.WebCoreApp.Pipe.Interfaces;
+﻿using DataContext.WebCoreApp.Pipe.Interfaces;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataContext.WebCoreApp.Pipe
 {
-    public partial class IsoJoint:IDateTime,IUser
+    public partial class IsoJoint : IDateTime, IUser
     {
         [Key]
         public Guid Id { get; set; }
@@ -21,8 +21,10 @@ namespace DataContext.WebCoreApp.Pipe
 
         [Required]
         [StringLength(4)]
+        [Column(TypeName = "varchar(4)")]
         public string TypeJoint { get; set; }
 
+        [Required]
         public string DrawName { get; set; }
 
         [StringLength(4)]
@@ -30,26 +32,46 @@ namespace DataContext.WebCoreApp.Pipe
         public string Rev { get; set; }
 
         [StringLength(20)]
+        [Column(TypeName = "varchar(20)")]
         public string Heate1 { get; set; }
 
         [StringLength(20)]
+        [Column(TypeName = "varchar(20)")]
         public string Heate2 { get; set; }
 
         public DateTime? WeldingDate { get; set; }
 
+        [StringLength(20)]
+        [Column(TypeName = "varchar(20)")]
         public string Welder1 { get; set; }
+
+        [StringLength(20)]
+        [Column(TypeName = "varchar(20)")]
         public string Welder2 { get; set; }
+
+        [StringLength(20)]
+        [Column(TypeName = "varchar(20)")]
         public string Welder3 { get; set; }
+
+        [StringLength(20)]
+        [Column(TypeName = "varchar(20)")]
         public string Welder4 { get; set; }
 
-        public SFJoint SF { get; set; }
+        [StringLength(1)]
+        [Column(TypeName = "varchar(1)")]
+        public string SF { get; set; }
 
-        public JointStatus Status { get; set; }
+        [StringLength(1)]
+        [Column(TypeName = "varchar(1)")]
+        public string Status { get; set; }
+
+        [StringLength(255)]
+        public string Remark { get; set; }
 
         public Isometric Isometric { get; set; }
-        public string UserCreated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string UserUpdated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime DateCreated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime DateUpdated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string UserCreated { get; set; }
+        public string UserUpdated { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
     }
 }
