@@ -33,6 +33,11 @@ namespace WebCoreApp.Infrastructure.Repositores.Pipes
             }
         }
 
+        public async Task<bool> Exist(string isoName, Guid project)
+        {
+            return await _db.Isometrics.AnyAsync(m => m.DrawName == isoName && m.Project == project);
+        }
+
         public async Task<IEnumerable<Isometric>> GetAll()
         {
             return await _db.Isometrics.OrderBy(m => m.DrawName).ToListAsync();
@@ -64,18 +69,23 @@ namespace WebCoreApp.Infrastructure.Repositores.Pipes
                     case "3":
                         data = (oderDir == "desc" ? data.OrderByDescending(m => m.Unit) : data.OrderBy(m => m.Unit));
                         break;
+
                     case "4":
                         data = (oderDir == "desc" ? data.OrderByDescending(m => m.PipeClass) : data.OrderBy(m => m.PipeClass));
                         break;
+
                     case "5":
                         data = (oderDir == "desc" ? data.OrderByDescending(m => m.Line) : data.OrderBy(m => m.Line));
                         break;
+
                     case "6":
                         data = (oderDir == "desc" ? data.OrderByDescending(m => m.Type) : data.OrderBy(m => m.Type));
                         break;
+
                     case "7":
                         data = (oderDir == "desc" ? data.OrderByDescending(m => m.Material) : data.OrderBy(m => m.Material));
                         break;
+
                     default:
                         data = (oderDir == "desc" ? data.OrderByDescending(m => m.DrawName) : data.OrderBy(m => m.DrawName));
                         break;
@@ -106,7 +116,7 @@ namespace WebCoreApp.Infrastructure.Repositores.Pipes
         {
             try
             {
-                 _db.Isometrics.Update(tbl);
+                _db.Isometrics.Update(tbl);
                 await _db.SaveChangesAsync();
                 return true;
             }

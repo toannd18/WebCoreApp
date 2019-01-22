@@ -90,7 +90,7 @@ namespace WebCoreApp.Areas.Pipes.Controllers
                 return BadRequest("Lỗi cập nhật");
             }
 
-            string idProject = HttpContext.User.FindFirst(m => m.Type == "Project").ToString();
+            string idProject = HttpContext.User.FindFirst("Display").Value;
             _map.Map<IsometricViewModel, Isometric>(model, tbl);
             tbl.UserCreated = user;
             tbl.DateCreated = DateTime.Now;
@@ -129,12 +129,12 @@ namespace WebCoreApp.Areas.Pipes.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveJoint([FromBody] JointViewModel model)
         {
-            IsoJoint tbl = await _isoJointRepository.GetByMa(model.Id);
-            _map.Map<JointViewModel, IsoJoint>(model, tbl);
+            IsoJoint tbl = new IsoJoint();
             bool status;
             string user = HttpContext.User.Identity.Name;
             if (!model.UpdateJoint)
             {
+                _map.Map<JointViewModel, IsoJoint>(model, tbl);
                 tbl.Id = Guid.NewGuid();
 
                 tbl.DateCreated = DateTime.Now;
@@ -146,7 +146,8 @@ namespace WebCoreApp.Areas.Pipes.Controllers
                 }
                 return BadRequest("Lỗi thêm");
             }
-
+             tbl = await _isoJointRepository.GetByMa(model.Id);
+            _map.Map<JointViewModel, IsoJoint>(model, tbl);
             tbl.DateUpdated = DateTime.Now;
             tbl.UserUpdated = user;
             status = await _isoJointRepository.Update(tbl);

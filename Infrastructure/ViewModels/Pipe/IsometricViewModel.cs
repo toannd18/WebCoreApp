@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebCoreApp.Infrastructure.ViewModels.Pipe
 {
@@ -6,6 +8,7 @@ namespace WebCoreApp.Infrastructure.ViewModels.Pipe
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Yêu cầu nhập tên bản vẽ")]
         [StringLength(20, ErrorMessage = "Không được vượt quá 20 ký tự")]
+        [Remote(controller: "Validates", action: "ExistDraw", AdditionalFields = nameof(Project))]
         public string DrawName { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Yêu cầu nhập Rev")]
@@ -41,6 +44,7 @@ namespace WebCoreApp.Infrastructure.ViewModels.Pipe
 
         public bool Update { get; set; }
 
+        public Guid Project { get; set; }
 
         public IsometricViewModel()
         {

@@ -9,23 +9,29 @@ namespace WebCoreApp.Controllers
     {
         private readonly IIsoJointRepository _isoJointRepository;
         private readonly IWelderRepository _welderRepository;
+        private readonly IIsometricRepository _isometricRepository;
 
-        public ValidatesController(IIsoJointRepository isoJointRepository, IWelderRepository welderRepository)
+        public ValidatesController(IIsoJointRepository isoJointRepository, 
+            IWelderRepository welderRepository,
+            IIsometricRepository isometricRepository)
         {
             _isoJointRepository = isoJointRepository;
             _welderRepository = welderRepository;
+            _isometricRepository = isometricRepository;
         }
-        [AcceptVerbs("Get","Post")]
-        public  JsonResult ExistJoint(string joint, string isoName)
+
+        [AcceptVerbs("Get", "Post")]
+        public JsonResult ExistJoint(string joint, string isoName)
         {
             bool result = _isoJointRepository.ExistJoint(joint, isoName);
 
             return Json(!result);
         }
+
         [AcceptVerbs("Get", "Post")]
         public async Task<JsonResult> ExistWelder(string welder1, string welder2, string welder3, string welder4)
         {
-            string welder=null;
+            string welder = null;
             if (!string.IsNullOrEmpty(welder1))
             {
                 welder = welder1;
@@ -47,7 +53,7 @@ namespace WebCoreApp.Controllers
                 return Json(true);
             }
             var result = await _welderRepository.GetByMa(welder);
-            if(result == null)
+            if (result == null)
             {
                 return Json($"Thợ hàn {welder} không tồn tại");
             }
@@ -55,5 +61,14 @@ namespace WebCoreApp.Controllers
             return Json(true);
         }
 
+        [AcceptVerbs("Get", "Post")]
+        public async Task<JsonResult> ExistDraw(string drawName, Guid project)
+        {
+            if (await _isometricRepository.Exist(drawName, project))
+            {
+                return Json($"Bản vẽ {drawName} đã tồn tại");
+            }
+            return Json(true);
+        }
     }
 }

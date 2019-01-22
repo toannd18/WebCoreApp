@@ -1,0 +1,8 @@
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.2\DataContext.Drapper.deps.json
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.2\DataContext.Drapper.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\bin\Debug\netcoreapp2.2\DataContext.Drapper.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.csproj.CoreCompileInputs.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.AssemblyInfoInputs.cache
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.AssemblyInfo.cs
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.dll
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.pdb
