@@ -6,3 +6,4 @@ E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcorea
 E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.AssemblyInfo.cs
 E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.dll
 E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext.Drapper\obj\Debug\netcoreapp2.2\DataContext.Drapper.csprojAssemblyReference.cache

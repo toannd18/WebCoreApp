@@ -6,3 +6,4 @@ E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext\obj\Debug\netcoreapp2.2\Da
 E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext\obj\Debug\netcoreapp2.2\DataContext.AssemblyInfo.cs
 E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext\obj\Debug\netcoreapp2.2\DataContext.dll
 E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext\obj\Debug\netcoreapp2.2\DataContext.pdb
+E:\2.Programming\Web PTSC Core\WebCoreApp\DataContext\obj\Debug\netcoreapp2.2\DataContext.csprojAssemblyReference.cache

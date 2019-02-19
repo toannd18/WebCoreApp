@@ -12,6 +12,8 @@ namespace WebCoreApp.Infrastructure.ViewModels.Pipe
         public string txtjoint { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Yêu cầu nhập ngày tháng")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode =true,DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime? WeldingDate { get; set; }
 
         [StringLength(20, ErrorMessage = "Không được vượt quá 20 ký tự")]

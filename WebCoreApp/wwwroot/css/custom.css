@@ -342,7 +342,7 @@ html , body{
     width: 230px;
     padding: 0;
     position: absolute;
-    display: -ms-flexbox;
+   
     display: flex;
     z-index: 1
 }

@@ -1,9 +1,12 @@
 ﻿$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
+    $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+    } );
     table = $('#tblIso').DataTable({
         proccessing: true,
         serverSide: true,
-        dom: '<"row"l><"row"f>rt<"bottom"ip><"clear">',
+        dom: '<"row"f>rt<"bottom"ip><"clear">',
         ajax: {
             url: '/Pipes/Isometrics/Load',
             type: 'post',
@@ -27,8 +30,12 @@
         ],
         select: {
             style: 'single'
-        }
-    })
+        },
+        scrollY: 400,
+        scrollCollapse: true,
+        scroller: true,
+        stateSave: true
+    });
 
     table.on('draw.dt', function () {
         var info = table.page.info();
@@ -72,7 +79,7 @@ function loadWelding() {
         deferRender: true,
         columnDefs: [
         { className: 'dt-body-center', targets: '_all' },
-        { className: 'dt-head-center', targets: '_all' },
+        { className: 'dt-head-center', targets: '_all' }
         ],
         columns: [
           { data: 'Joint' },
@@ -86,7 +93,9 @@ function loadWelding() {
         ],
         select: {
             style: 'single'
-        }
+        },
+        scrollY: 400,
+        scrollCollapse:true
     });
 
     tblWelded = $("#tblWelded").DataTable({
@@ -102,7 +111,7 @@ function loadWelding() {
         deferRender: true,
         columnDefs: [
         { className: 'dt-body-center', targets: '_all' },
-        { className: 'dt-head-center', targets: '_all' },
+        { className: 'dt-head-center', targets: '_all' }
         ],
         columns: [
           { data: 'Joint' },
@@ -120,7 +129,9 @@ function loadWelding() {
         ],
         select: {
             style: 'single'
-        }
+        },
+        scrollY: 400,
+        scrollCollapse: true
     });
 
     tblWelding.on('select', function (e, dt, type, indexes) {
@@ -138,7 +149,7 @@ function loadWelding() {
             selectData(data);
             web.formValidation($("#frmWelding"));
         }
-    })
+    });
 }
 
 function activeTab() {
@@ -147,7 +158,7 @@ function activeTab() {
     });
     $('#profile-tab').on('click', function () {
         tblWelded.ajax.reload();
-    })
+    });
 }
 
 function selectData(data) {

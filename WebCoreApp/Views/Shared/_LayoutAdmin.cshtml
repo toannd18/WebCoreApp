@@ -17,8 +17,9 @@
     <!-- iCheck -->
     <link href="~/lib/iCheck/skins/flat/green.css" rel="stylesheet" asp-append-version="true">
     <!-- DataTables -->
-    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" asp-append-version="true" />
+    @*<link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" asp-append-version="true" />*@
     <link href="~/lib/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/datatables/css/scroller.bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
     <!-- Jquery UI -->
     <link href="~/lib/jqueryui/jquery-ui.min.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/lib/jqueryui/jquery-ui.theme.min.css" rel="stylesheet" asp-append-version="true" />
@@ -35,10 +36,10 @@
     <!-- Custom Theme Style -->
     <link href="~/css/custom.css" rel="stylesheet" asp-append-version="true" />
 </head>
-<body class="nav-md">
+<body class="footer_fixed nav-md">
     <div class="container body">
         <div class="main_container">
-            <div class="col-md-3 left_col">
+            <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
                         <a href="~/Home" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
@@ -147,6 +148,7 @@
     <script src="~/lib/datatables/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/dataTables.select.min.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/dataTables.scroller.min.js" asp-append-version="true"></script>
     <!-- Switchery -->
     <script src="~/lib/asset/switchery.min.js" asp-append-version="true"></script>
     @*<!-- NProgress -->

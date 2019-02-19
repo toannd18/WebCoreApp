@@ -28,12 +28,33 @@ namespace WebCoreApp.Areas.Pipes.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> Load(int? draw, int? length, int start, string search)
+        //{
+        //    if (!string.IsNullOrEmpty(Request.Form["search[value]"]))
+        //    {
+        //        search = Request.Form["search[value]"];
+        //    }
+        //    string orderId = Request.Form["order[0][column]"];
+        //    string orderDir = Request.Form["order[0][dir]"];
+        //    int record = length ?? 10;
+
+        //    if (draw == null)
+        //    {
+        //        start = (start - 1) * record;
+        //    }
+
+        //    (IEnumerable<MaterialPipe> data, int totals, int filter) = await _materialPipeRepository.GetTable(record, start, search, orderId, orderDir);
+
+        //    return Ok(new { draw = draw, recordsTotal = totals, recordsFiltered = filter, data = data });
+        //}
         [HttpPost]
         public async Task<IActionResult> Load(int? draw, int? length, int start, string search)
         {
+         
             if (!string.IsNullOrEmpty(Request.Form["search[value]"]))
             {
-                search = Request.Form["search[value]"];
+               search = Request.Form["search[value]"];
             }
             string orderId = Request.Form["order[0][column]"];
             string orderDir = Request.Form["order[0][dir]"];
@@ -48,7 +69,6 @@ namespace WebCoreApp.Areas.Pipes.Controllers
 
             return Ok(new { draw = draw, recordsTotal = totals, recordsFiltered = filter, data = data });
         }
-
         [HttpGet]
         public async Task<IActionResult> Get(string id, bool update = false)
         {

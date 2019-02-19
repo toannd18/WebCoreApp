@@ -1,14 +1,13 @@
 ﻿$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     table = $("#tblMaterial").DataTable({
-        proccessing: true,
         serverSide: true,
+        proccessing: true,
         ajax: {
-            url: '/Pipes/Materials/Load',
-            type: 'post',
-            dataType: 'Json'
+           url: "/Pipes/Materials/Load",
+           dataType: "json",
+           type: "POST"
         },
-        deferRender: true,
         order: [[1, 'asc']],
         columnDefs: [
             { className: 'dt-body-center', targets: '_all' },
@@ -26,7 +25,13 @@
         ],
         select: {
             style: 'single'
-        }
+        },
+        fixedHeader: true,
+        deferRender: true
+        //scrollY: 200,
+        //scroller: true,
+        //scrollCollapse: true,
+        //stateSave: true,
     });
     table.on('draw.dt', function () {
         var info = table.page.info();
